@@ -1,0 +1,1245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Connector Catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=JetBrains+Mono:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+:root{
+  --bg:#F3F6F5; --surface:#FFFFFF; --surface-2:#EAF1EF;
+  --ink:#12201E; --ink-2:#465755; --ink-3:#687976;
+  --line:#D5DFDC; --line-strong:#B3C2BE;
+  --accent:#0A6A64; --accent-ink:#FFFFFF; --accent-soft:#DCEEEA;
+  --hl:#FFEFB0;
+  --t-core-fg:#0A6A64; --t-core-bg:#DCEEEA;
+  --t-in-fg:#2F3A9C;   --t-in-bg:#E8EBFA;
+  --t-appr-fg:#8A5200; --t-appr-bg:#FBEFD6;
+  --t-lic-fg:#A3241A;  --t-lic-bg:#FBE7E3;
+  --t-free-fg:#1B6A33; --t-free-bg:#E1F2E5;
+  --t-risk-fg:#86285F; --t-risk-bg:#F6E4EF;
+  --t-new-fg:#5A4A00;  --t-new-bg:#FFEFB0;
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --radius:8px;
+  --gutter:clamp(16px,4vw,40px);
+  --tb-h:130px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0B1211; --surface:#121B1A; --surface-2:#172624;
+    --ink:#E1EBE8; --ink-2:#A2B3B0; --ink-3:#7F918D;
+    --line:#22302D; --line-strong:#36483F;
+    --accent:#4BC1B5; --accent-ink:#052925; --accent-soft:#12302D;
+    --hl:#3B3413;
+    --t-core-fg:#6DD5C9; --t-core-bg:#12302D;
+    --t-in-fg:#AEB7FF;   --t-in-bg:#1D2246;
+    --t-appr-fg:#F0C36A; --t-appr-bg:#37290E;
+    --t-lic-fg:#FF9E90;  --t-lic-bg:#3B1713;
+    --t-free-fg:#80D79B; --t-free-bg:#122E1B;
+    --t-risk-fg:#EEA2D3; --t-risk-bg:#38172D;
+    --t-new-fg:#F5DC7A;  --t-new-bg:#3B3413;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0B1211; --surface:#121B1A; --surface-2:#172624;
+  --ink:#E1EBE8; --ink-2:#A2B3B0; --ink-3:#7F918D;
+  --line:#22302D; --line-strong:#36483F;
+  --accent:#4BC1B5; --accent-ink:#052925; --accent-soft:#12302D;
+  --hl:#3B3413;
+  --t-core-fg:#6DD5C9; --t-core-bg:#12302D;
+  --t-in-fg:#AEB7FF;   --t-in-bg:#1D2246;
+  --t-appr-fg:#F0C36A; --t-appr-bg:#37290E;
+  --t-lic-fg:#FF9E90;  --t-lic-bg:#3B1713;
+  --t-free-fg:#80D79B; --t-free-bg:#122E1B;
+  --t-risk-fg:#EEA2D3; --t-risk-bg:#38172D;
+  --t-new-fg:#F5DC7A;  --t-new-bg:#3B3413;
+}
+[data-t="core"]{--tf:var(--t-core-fg);--tb:var(--t-core-bg)}
+[data-t="in"]{--tf:var(--t-in-fg);--tb:var(--t-in-bg)}
+[data-t="appr"]{--tf:var(--t-appr-fg);--tb:var(--t-appr-bg)}
+[data-t="lic"]{--tf:var(--t-lic-fg);--tb:var(--t-lic-bg)}
+[data-t="free"]{--tf:var(--t-free-fg);--tb:var(--t-free-bg)}
+[data-t="risk"]{--tf:var(--t-risk-fg);--tb:var(--t-risk-bg)}
+[data-t="new"]{--tf:var(--t-new-fg);--tb:var(--t-new-bg)}
+
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+p{margin:0}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.wrap{max-width:1140px;margin-inline:auto;padding-inline:var(--gutter);padding-block:clamp(24px,5vw,56px) 72px}
+.label{font:600 .7rem/1.3 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:end}
+.eyebrow{font:600 .72rem/1.3 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--f-display);font-stretch:125%;font-weight:800;font-size:clamp(2.3rem,6.4vw,4.1rem);line-height:.98;letter-spacing:-.015em;margin-top:.7rem}
+.lead{font-size:1.13rem;color:var(--ink-2);max-width:60ch;margin-top:1rem}
+.meta{display:flex;flex-wrap:wrap;gap:.25rem 1rem;margin-top:1.1rem;font:500 .78rem/1.5 var(--f-mono);color:var(--ink-3);font-variant-numeric:tabular-nums}
+.meta b{color:var(--ink);font-weight:600}
+.start{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.1rem 1.2rem 1.2rem}
+.num-list{list-style:none;margin:.75rem 0 0;padding:0;counter-reset:s;display:grid;gap:.75rem}
+.num-list li{counter-increment:s;display:grid;grid-template-columns:1.8rem minmax(0,1fr);gap:.65rem;align-items:start}
+.num-list li::before{content:counter(s);display:block;width:1.8rem;height:1.8rem;border-radius:50%;background:var(--accent-soft);color:var(--accent);font:600 .8rem/1.8rem var(--f-mono);text-align:center}
+
+/* Sections */
+.sec{margin-top:clamp(40px,6vw,68px)}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.35rem 1.5rem;margin-bottom:1rem}
+.sec-head h2{font-family:var(--f-display);font-stretch:112%;font-weight:750;font-size:clamp(1.35rem,2.6vw,1.75rem);letter-spacing:-.005em}
+.sec-head p{color:var(--ink-2);max-width:60ch}
+
+/* Model diagram */
+.model{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,3vw,36px);align-items:start}
+.dg{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1rem}
+.dg svg{display:block;width:100%;height:auto;max-width:470px;margin-inline:auto}
+.dg figcaption{margin-top:.7rem;font-size:.92rem;color:var(--ink-2);text-align:center}
+.dg .band{fill:var(--surface-2);stroke:var(--line-strong);stroke-width:1}
+.dg .band.mid{fill:var(--accent-soft);stroke:var(--accent)}
+.dg .box{fill:var(--surface);stroke:var(--line-strong);stroke-width:1}
+.dg .bt{font:700 11px var(--f-mono);letter-spacing:.06em;fill:var(--ink)}
+.dg .bts{font:600 11.5px var(--f-body);fill:var(--ink-2)}
+.dg .ct{font:700 13px var(--f-body);fill:var(--ink)}
+.dg .cs{font:400 11.5px var(--f-body);fill:var(--ink-2)}
+.dg .note{font:600 11.5px var(--f-body);fill:var(--ink-2)}
+.dg .flow{fill:none;stroke:var(--accent);stroke-width:1.8}
+.dg .ah{fill:var(--accent)}
+.dg .badge{fill:var(--accent)}
+.dg .bn{font:700 10.5px var(--f-mono);fill:var(--accent-ink)}
+.dg .fl{font:700 11.5px var(--f-body);fill:var(--accent)}
+.formula{font:600 .92rem/1.5 var(--f-mono);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:.7rem .9rem}
+.formula b{color:var(--accent)}
+.lesson{margin-top:1rem;padding:.9rem 1rem;background:var(--accent-soft);border-radius:6px;font-size:.95rem}
+.lesson b{color:var(--accent)}
+
+/* Top 15 */
+.top{list-style:none;margin:0;padding:0;counter-reset:t;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.top li{counter-increment:t;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:.85rem 1rem .9rem;display:grid;grid-template-columns:2.3rem minmax(0,1fr);gap:.15rem .7rem;align-content:start}
+.top li::before{content:counter(t);grid-row:1 / span 3;font-family:var(--f-display);font-stretch:115%;font-weight:800;font-size:1.55rem;line-height:1.05;color:var(--accent);font-variant-numeric:tabular-nums}
+.top .jump{border-top:0;padding:0;font-weight:700;font-size:1rem}
+.top .why{font-size:.93rem;color:var(--ink)}
+.top .cost{font:500 .74rem/1.45 var(--f-mono);color:var(--ink-3);margin-top:.2rem}
+.found{margin-top:1.1rem;background:var(--surface);border:1px dashed var(--line-strong);border-radius:var(--radius);padding:.9rem 1rem}
+.found p{color:var(--ink-2);font-size:.92rem;margin-top:.2rem}
+.fchips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem}
+.fchip{display:inline-flex;align-items:baseline;gap:.4rem;font:600 .86rem/1.2 var(--f-body);padding:.45rem .65rem;border-radius:6px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);cursor:pointer}
+.fchip .rc{font:600 .7rem var(--f-mono);color:var(--accent)}
+.fchip:hover{border-color:var(--accent)}
+
+/* Map */
+.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;align-items:start}
+.layer{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1rem 1.1rem .5rem}
+.layer h3{font-family:var(--f-display);font-stretch:110%;font-weight:700;font-size:1.05rem}
+.layer > p{font-size:.9rem;color:var(--ink-2);margin:.15rem 0 .55rem}
+.glink{display:flex;align-items:center;gap:.6rem;padding:.5rem 0;border-top:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:.98rem}
+.code{font:600 .72rem/1 var(--f-mono);letter-spacing:.04em;color:var(--accent);border:1.5px solid var(--accent);border-radius:4px;padding:.3rem .35rem;min-width:3.1rem;text-align:center;flex:none}
+.glink .gname{flex:none;max-width:70%}
+.glink .dots{flex:1;min-width:1rem;border-bottom:1.5px dotted var(--line-strong);transform:translateY(.28em)}
+.glink .n{font:500 .8rem var(--f-mono);color:var(--ink-3);font-variant-numeric:tabular-nums}
+.glink:hover .gname{color:var(--accent);text-decoration:underline}
+.strips{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:12px;margin-top:12px}
+.strip{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .7rem;padding:.85rem 1.1rem;background:var(--surface);border:1px dashed var(--line-strong);border-radius:var(--radius);color:var(--ink);text-decoration:none}
+.strip .t{font-weight:700}
+.strip .s{color:var(--ink-2);font-size:.93rem;flex-basis:100%}
+.strip:hover .t{color:var(--accent);text-decoration:underline}
+
+/* Stacks */
+.stacks{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;align-items:start}
+.stack{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1rem 1.1rem .6rem}
+.stack h3{font-family:var(--f-display);font-stretch:110%;font-weight:700;font-size:1.05rem}
+.stack .for{color:var(--ink-2);font-size:.9rem;margin-top:.15rem}
+.stack .label{margin:.9rem 0 .25rem}
+.jump{display:flex;align-items:baseline;gap:.55rem;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:.42rem 0;font:inherit;font-size:.94rem;color:var(--ink);cursor:pointer}
+.jump .rc{font:600 .72rem var(--f-mono);color:var(--accent);min-width:3.9rem;flex:none}
+.jump:hover .jn{color:var(--accent);text-decoration:underline}
+
+/* Primer */
+.primer{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1rem 1.1rem .4rem}
+.concepts{margin:.5rem 0 0}
+.concepts > div{padding:.65rem 0;border-top:1px solid var(--line)}
+.concepts dt{font-weight:700;font-size:1rem}
+.concepts dd{margin:.15rem 0 0;color:var(--ink-2);font-size:.94rem}
+
+/* Tags and chips */
+.tag{display:inline-block;font:600 .64rem/1 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;padding:.3rem .42rem;border-radius:4px;background:var(--tb);color:var(--tf);white-space:nowrap;vertical-align:middle}
+.legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.5rem 1.4rem;margin-bottom:1rem}
+.legend div{display:flex;gap:.6rem;align-items:baseline;font-size:.9rem;color:var(--ink-2)}
+.legend .tag{flex:none;min-width:5.6rem;text-align:center}
+.chip{display:inline-flex;align-items:center;gap:.45rem;font:600 .84rem/1 var(--f-body);padding:.52rem .8rem;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink-2);cursor:pointer;white-space:nowrap;flex:none}
+.chip .dot{width:.55rem;height:.55rem;border-radius:50%;background:var(--tf)}
+.chip[aria-pressed="true"]{background:var(--tb);color:var(--tf);border-color:var(--tf)}
+
+/* Toolbar */
+.toolbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:.8rem .7rem;border-bottom:1px solid var(--line)}
+.searchrow{display:flex;gap:.6rem;align-items:center}
+.search{position:relative;flex:1;min-width:0}
+.search svg{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--ink-3);pointer-events:none}
+#q{width:100%;height:46px;padding:0 2.6rem 0 2.6rem;font:inherit;font-size:1rem;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;-webkit-appearance:none;appearance:none}
+#q::placeholder{color:var(--ink-3)}
+#q:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+#clearq{position:absolute;right:.35rem;top:50%;transform:translateY(-50%);width:34px;height:34px;border:0;border-radius:4px;background:none;color:var(--ink-3);font-size:1.3rem;line-height:1;cursor:pointer}
+#clearq:hover{background:var(--surface-2);color:var(--ink)}
+.tbtn{height:46px;padding:0 .9rem;font:600 .86rem var(--f-body);color:var(--ink-2);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;cursor:pointer;white-space:nowrap}
+.tbtn:hover{color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.65rem}
+.result{margin-top:.55rem;font:500 .78rem/1.3 var(--f-mono);color:var(--ink-3);font-variant-numeric:tabular-nums}
+
+/* Catalogue */
+.cat{display:flex;flex-direction:column;gap:10px;margin-top:.9rem}
+.lhead{display:flex;align-items:center;gap:.7rem;margin-top:1.1rem;font:600 .7rem/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.lhead::after{content:"";flex:1;height:1px;background:var(--line)}
+.cat > .lhead:first-child{margin-top:.2rem}
+.group{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);scroll-margin-top:calc(var(--tb-h) + 12px)}
+.gh{font:inherit}
+.ghead{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center;gap:.4rem .9rem;width:100%;text-align:left;background:none;border:0;padding:1rem 1.1rem;font:inherit;color:inherit;cursor:pointer;border-radius:var(--radius)}
+.ghead .code{font-size:.78rem;padding:.4rem .4rem;min-width:3.5rem}
+.gtitle{display:block;font-family:var(--f-display);font-stretch:108%;font-weight:700;font-size:1.15rem;line-height:1.2}
+.gtitle .tag{margin-left:.45rem;font-family:var(--f-mono)}
+.gq{display:block;color:var(--ink-2);font-size:.93rem;margin-top:.1rem}
+.gcount{font:500 .8rem var(--f-mono);color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.chev{width:.62rem;height:.62rem;border-right:2px solid var(--ink-3);border-bottom:2px solid var(--ink-3);transform:rotate(45deg) translate(-2px,-2px);transition:transform .18s ease;margin-right:.25rem}
+.group.is-open .chev{transform:rotate(-135deg) translate(-2px,-2px)}
+.ghead:hover .gtitle{color:var(--accent)}
+.gpreview{margin-bottom:1rem;padding:0 1.1rem 0 calc(1.1rem + 3.5rem + .9rem);color:var(--ink-3);font-size:.9rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.gbody{border-top:1px solid var(--line)}
+.explain{padding:1rem 1.1rem;background:var(--surface-2);display:grid;gap:.75rem}
+.explain .k{display:block;font:600 .64rem/1.4 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.15rem}
+.explain .plain{font-size:1rem;max-width:75ch}
+.explain .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.75rem 1.4rem}
+.explain .two p{font-size:.93rem;color:var(--ink-2)}
+.row{display:grid;grid-template-columns:4.7rem minmax(0,1.25fr) minmax(0,1fr);gap:.3rem 1.4rem;padding:.95rem 1.1rem;border-top:1px solid var(--line);scroll-margin-top:calc(var(--tb-h) + 16px)}
+.rcode{font:600 .74rem/1.9 var(--f-mono);color:var(--accent)}
+.rname{font-family:var(--f-body);font-weight:700;font-size:1.03rem;line-height:1.3}
+.rtags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.4rem}
+.rdesc{margin-top:.35rem}
+.rnote{margin-top:.45rem;font-size:.92rem;color:var(--ink-2)}
+.rnote b{font:600 .64rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-right:.4rem}
+.rvend{font-size:.95rem}
+.rvend .label{display:block;margin-bottom:.2rem}
+.row.flash{animation:flash 2s ease-out}
+@keyframes flash{0%,45%{background:var(--hl)}100%{background:transparent}}
+.empty{background:var(--surface);border:1px dashed var(--line-strong);border-radius:var(--radius);padding:1.5rem 1.2rem;text-align:center;color:var(--ink-2)}
+.empty button{margin-top:.8rem}
+
+/* Built-in + checklist */
+.cols{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;align-items:start}
+.list{list-style:none;margin:.5rem 0 0;padding:0}
+.list li{padding:.55rem 0;border-top:1px solid var(--line);font-size:.95rem}
+.check li{display:grid;grid-template-columns:1.3rem minmax(0,1fr);gap:.6rem}
+.check li::before{content:"";width:1rem;height:1rem;margin-top:.2rem;border:1.5px solid var(--line-strong);border-radius:3px}
+.tip{margin-top:.6rem;margin-bottom:.8rem;padding:.9rem 1rem;background:var(--accent-soft);border-radius:6px;font-size:.95rem}
+.tip b{color:var(--accent)}
+
+/* Sources */
+.sources{columns:2 300px;column-gap:2rem;list-style:none;margin:0;padding:0}
+.sources li{break-inside:avoid;padding:.35rem 0;font-size:.9rem;color:var(--ink-2)}
+.foot{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--line);color:var(--ink-3);font-size:.88rem;max-width:75ch}
+
+@media (max-width:860px){
+  .hero,.model{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .row{grid-template-columns:minmax(0,1fr);gap:.1rem;padding:.9rem 1rem}
+  .rcode{line-height:1.4}
+  .rvend{margin-top:.55rem}
+  .gpreview{padding-left:1rem;padding-right:1rem}
+  .ghead{padding:.9rem 1rem;gap:.35rem .75rem}
+  .explain{padding:.9rem 1rem}
+  .explain .two{grid-template-columns:minmax(0,1fr)}
+  .strips{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:640px){
+  .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter);padding-bottom:2px}
+  .chips::-webkit-scrollbar{display:none}
+  .top li{grid-template-columns:2rem minmax(0,1fr)}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .chev{transition:none}
+  .row.flash{animation:none;outline:2px solid var(--accent);outline-offset:-2px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Field guide for designing custom business and AI software</div>
+      <h1>Connector Catalogue</h1>
+      <p class="lead">The outside services a business app can plug into, grouped by the job they do and explained in plain words. Developers build the core app. These services add abilities such as WhatsApp, payments, GPS tracking, GST filing and AI, usually for a monthly or per-use fee.</p>
+      <div class="meta">
+        <span><b id="stat-caps">0</b> capabilities</span>
+        <span><b id="stat-groups">0</b> groups</span>
+        <span><b id="stat-new">0</b> new in this update</span>
+        <span>Updated 27 Sep 2026</span>
+      </div>
+    </div>
+    <aside class="start" aria-labelledby="start-h">
+      <h2 id="start-h" class="label">Start here</h2>
+      <ol class="num-list">
+        <li><span>See <a href="#model">how custom software is put together</a>, with one payment traced end to end.</span></li>
+        <li><span>Learn the <a href="#top15">top 15 for SMBs</a> and the <a href="#primer">15 ideas every architect uses</a>.</span></li>
+        <li><span>For each client, write the workflow as steps, search here for each step, and list the part codes (like <b>PAY-02</b>) in the brief.</span></li>
+      </ol>
+    </aside>
+  </header>
+
+  <section class="sec" id="model" aria-labelledby="model-h">
+    <div class="sec-head">
+      <h2 id="model-h">How custom software is put together</h2>
+      <p>Three layers. Your developers build the first, you rent the third, and the middle one is where an architect makes most decisions.</p>
+    </div>
+    <div class="model">
+      <figure class="dg">
+        <svg viewBox="0 0 420 484" role="img" aria-label="A payment travels from the payment gateway to the webhook inbox, into the queue, to the backend which saves the invoice as paid, then out through the WhatsApp adapter as a receipt.">
+          <defs>
+            <marker id="dg-ah" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto"><path class="ah" d="M0,0 L10,5 L0,10 z"></path></marker>
+          </defs>
+          <rect class="band" x="4" y="8" width="412" height="104" rx="10"></rect>
+          <text class="bt" x="210" y="29" text-anchor="middle">CORE APP</text>
+          <rect class="box" x="14" y="42" width="112" height="50" rx="6"></rect>
+          <text class="ct" x="70" y="63" text-anchor="middle">Rules</text>
+          <text class="cs" x="70" y="80" text-anchor="middle">backend</text>
+          <rect class="box" x="154" y="42" width="112" height="50" rx="6"></rect>
+          <text class="ct" x="210" y="63" text-anchor="middle">Records</text>
+          <text class="cs" x="210" y="80" text-anchor="middle">database</text>
+          <rect class="box" x="294" y="42" width="112" height="50" rx="6"></rect>
+          <text class="ct" x="350" y="63" text-anchor="middle">Screens</text>
+          <text class="cs" x="350" y="80" text-anchor="middle">frontend</text>
+
+          <rect class="band mid" x="4" y="186" width="412" height="116" rx="10"></rect>
+          <text class="bt" x="210" y="207" text-anchor="middle">INTEGRATION LAYER</text>
+          <rect class="box" x="14" y="218" width="112" height="50" rx="6"></rect>
+          <text class="ct" x="70" y="239" text-anchor="middle">Adapters</text>
+          <text class="cs" x="70" y="256" text-anchor="middle">one per vendor</text>
+          <rect class="box" x="154" y="218" width="112" height="50" rx="6"></rect>
+          <text class="ct" x="210" y="239" text-anchor="middle">Queue</text>
+          <text class="cs" x="210" y="256" text-anchor="middle">retries failures</text>
+          <rect class="box" x="294" y="218" width="112" height="50" rx="6"></rect>
+          <text class="ct" x="350" y="239" text-anchor="middle">Webhook inbox</text>
+          <text class="cs" x="350" y="256" text-anchor="middle">checks signature</text>
+          <text class="note" x="210" y="290" text-anchor="middle">Also here: keys vault · rate limits · logs</text>
+
+          <rect class="band" x="4" y="372" width="412" height="104" rx="10"></rect>
+          <text class="bt" x="210" y="393" text-anchor="middle">EXTERNAL CAPABILITIES</text>
+          <rect class="box" x="14" y="406" width="112" height="50" rx="6"></rect>
+          <text class="ct" x="70" y="427" text-anchor="middle">WhatsApp</text>
+          <text class="cs" x="70" y="444" text-anchor="middle">messages</text>
+          <rect class="box" x="154" y="406" width="112" height="50" rx="6"></rect>
+          <text class="ct" x="210" y="427" text-anchor="middle">AI, maps, GST</text>
+          <text class="cs" x="210" y="444" text-anchor="middle">and many more</text>
+          <rect class="box" x="294" y="406" width="112" height="50" rx="6"></rect>
+          <text class="ct" x="350" y="427" text-anchor="middle">Payments</text>
+          <text class="cs" x="350" y="444" text-anchor="middle">gateway</text>
+
+          <line class="flow" x1="350" y1="404" x2="350" y2="270" marker-end="url(#dg-ah)"></line>
+          <line class="flow" x1="292" y1="243" x2="268" y2="243" marker-end="url(#dg-ah)"></line>
+          <polyline class="flow" points="154,232 140,232 140,150 98,150 98,94" marker-end="url(#dg-ah)"></polyline>
+          <line class="flow" x1="128" y1="67" x2="152" y2="67" marker-end="url(#dg-ah)"></line>
+          <line class="flow" x1="42" y1="94" x2="42" y2="216" marker-end="url(#dg-ah)"></line>
+          <line class="flow" x1="70" y1="270" x2="70" y2="404" marker-end="url(#dg-ah)"></line>
+
+          <text class="fl" x="340" y="341" text-anchor="end">webhook</text>
+          <text class="fl" x="148" y="182">event</text>
+          <text class="fl" x="50" y="182">send receipt</text>
+          <text class="fl" x="82" y="341">API call + key</text>
+
+          <circle class="badge" cx="298" cy="410" r="9"></circle><text class="bn" x="298" y="414" text-anchor="middle">1</text>
+          <circle class="badge" cx="350" cy="320" r="9"></circle><text class="bn" x="350" y="324" text-anchor="middle">2</text>
+          <circle class="badge" cx="280" cy="224" r="9"></circle><text class="bn" x="280" y="228" text-anchor="middle">3</text>
+          <circle class="badge" cx="119" cy="150" r="9"></circle><text class="bn" x="119" y="154" text-anchor="middle">4</text>
+          <circle class="badge" cx="42" cy="150" r="9"></circle><text class="bn" x="42" y="154" text-anchor="middle">5</text>
+        </svg>
+        <figcaption>One payment, end to end. APIs go out, webhooks come in, and the integration layer decides what happens in between.</figcaption>
+      </figure>
+      <div>
+        <p class="formula">Custom software = <b>Core app</b> + <b>Integration layer</b> + <b>External capabilities</b></p>
+        <ol class="num-list">
+          <li><span>A customer pays through a payment link. The money moves at the gateway, outside your app.</span></li>
+          <li><span>The gateway calls your webhook inbox with the news: paid.</span></li>
+          <li><span>The inbox checks the signature (proof the message really came from the gateway) and puts the event in a queue.</span></li>
+          <li><span>The backend takes the event from the queue and marks the invoice paid in the database.</span></li>
+          <li><span>The backend asks the WhatsApp adapter to send a receipt. The adapter calls WhatsApp’s API using the stored key.</span></li>
+        </ol>
+        <p class="lesson"><b>The architect’s job.</b> Choose each vendor, decide what happens when one fails, keep the keys safe, and know what every call costs. Swap “payment” for “IndiaMART lead” or “call recording” and the same pattern repeats.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="top15" aria-labelledby="top-h">
+    <div class="sec-head">
+      <h2 id="top-h">Top 15 for SMBs</h2>
+      <p>Ranked by how often Indian small and mid-size businesses need them and how quickly they pay back. A judgment call, so adjust for each client. Tap a name for details.</p>
+    </div>
+    <ol class="top" id="top"></ol>
+    <div class="found">
+      <div class="label">Foundations every app needs anyway</div>
+      <p>Not ranked above, because every project includes them whatever the client does.</p>
+      <div class="fchips" id="found"></div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="map-h">
+    <div class="sec-head">
+      <h2 id="map-h">Six layers of connectors</h2>
+      <p>Every group sits in one layer. Tap a group to open its list below.</p>
+    </div>
+    <div class="map" id="map"></div>
+    <div class="strips">
+      <a class="strip" href="#IND" data-group="IND">
+        <span class="code">IND</span>
+        <span class="t">Industry add-ons</span>
+        <span class="s">Healthcare, education, hotels, restaurants, real estate, agriculture, rooftop solar, lending</span>
+      </a>
+      <a class="strip" href="#SAAS" data-group="SAAS">
+        <span class="code">SAAS</span>
+        <span class="t">Running your own product</span>
+        <span class="s">Subscription billing, client workspaces, enterprise login, SOC 2 and ISO 27001, onboarding, marketplaces</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="stacks-h">
+    <div class="sec-head">
+      <h2 id="stacks-h">Starter stacks</h2>
+      <p>Common builds and the connectors they usually need. Tap any line to jump to its details.</p>
+    </div>
+    <div class="stacks" id="stacks"></div>
+  </section>
+
+  <section class="sec" id="primer" aria-labelledby="primer-h">
+    <div class="sec-head">
+      <h2 id="primer-h">Architect’s primer</h2>
+      <p>Fifteen ideas that come up in every integration. Learn these and vendor documentation starts to make sense.</p>
+    </div>
+    <div class="primer">
+      <div class="panel">
+        <h3 class="label">How apps talk</h3>
+        <dl class="concepts">
+          <div><dt>API</dt><dd>Your app asks another service to do something, like a waiter carrying an order to the kitchen. Example: “send this WhatsApp”.</dd></div>
+          <div><dt>Webhook</dt><dd>The other service tells your app when something happens, like the kitchen ringing a bell. Example: “payment received”.</dd></div>
+          <div><dt>SDK</dt><dd>A ready-made kit from the vendor that runs inside your app or phone app. Examples: GPS tracking, Truecaller login.</dd></div>
+          <div><dt>OAuth (“Connect your Google account”)</dt><dd>The user lets your app act on their account without sharing a password, like a valet key that opens only some doors and can be taken back.</dd></div>
+          <div><dt>No API</dt><dd>Some systems offer no API. You then use a small connector on the client’s computer (Tally, weighbridges) or browser automation (government portals).</dd></div>
+        </dl>
+      </div>
+      <div class="panel">
+        <h3 class="label">Making it reliable</h3>
+        <dl class="concepts">
+          <div><dt>Rate limits</dt><dd>Vendors cap how many calls you can make per second or per day. Send in batches and slow down when told, so a busy day doesn’t block the app.</dd></div>
+          <div><dt>Retries and idempotency</dt><dd>Networks fail, so calls get retried. An idempotency key makes sure a retried payment or message still happens only once.</dd></div>
+          <div><dt>Queues and background jobs</dt><dd>Slow work, such as sending 500 WhatsApps or reading 50 PDFs, goes into a queue so users never wait on a spinner.</dd></div>
+          <div><dt>Sandbox and live</dt><dd>Most vendors offer a test mode with fake money and test numbers. Build and demo there, then switch keys to go live.</dd></div>
+          <div><dt>Logs and monitoring</dt><dd>Record every outside call and its result. When a client says “the message never came”, the log answers in seconds.</dd></div>
+        </dl>
+      </div>
+      <div class="panel">
+        <h3 class="label">Business and risk</h3>
+        <dl class="concepts">
+          <div><dt>Keys and secrets</dt><dd>API keys are passwords for apps. Keep them on the server or in a vault, never inside website or phone-app code.</dd></div>
+          <div><dt>Adapters</dt><dd>Wrap each vendor behind your own small adapter. Switching from MSG91 to Gupshup then means changing one piece, not the whole app.</dd></div>
+          <div><dt>Unit costs</dt><dd>Most services charge per use: per message, minute, page or transaction. Put these into your quote, either passed through or bundled with a margin.</dd></div>
+          <div><dt>Data protection and location</dt><dd>Know which personal data goes to each vendor and where it is stored. India’s DPDP Act and some clients require care, sometimes Indian data centres.</dd></div>
+          <div><dt>Multi-tenancy</dt><dd>One app serving many client companies, each seeing only its own data. Essential when a custom build becomes a product.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="cat-h">
+    <div class="sec-head">
+      <h2 id="cat-h">All connectors</h2>
+      <p>Each group opens with a plain explanation, then its rows with example vendors. Treat vendor names as a starting point for comparison. Rows marked New were added on 27 Sep 2026; existing part codes did not change.</p>
+    </div>
+    <div class="legend" id="legend"></div>
+
+    <div class="toolbar" id="toolbar">
+      <div class="searchrow">
+        <div class="search">
+          <label for="q" class="sr-only">Search connectors</label>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+          <input id="q" type="search" autocomplete="off" placeholder="Search connectors">
+          <button type="button" id="clearq" aria-label="Clear search" hidden>×</button>
+        </div>
+        <button type="button" class="tbtn" id="toggleAll">Expand all</button>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Filter by tag"></div>
+      <div class="result" id="result" aria-live="polite"></div>
+    </div>
+
+    <div class="cat" id="cat"></div>
+    <div class="empty" id="empty" hidden>
+      <p>Nothing matches. Try fewer words, or clear the tag filters.</p>
+      <button type="button" class="tbtn" id="emptyClear">Clear search and filters</button>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="built-h">
+    <div class="sec-head">
+      <h2 id="built-h">Built into the app itself</h2>
+      <p>Developers code these directly, at most with a free library. No outside service and no monthly bill.</p>
+    </div>
+    <div class="cols">
+      <div class="panel">
+        <h3 class="label">Security basics</h3>
+        <ul class="list">
+          <li>Creating and checking OTP codes (only the delivery is outside)</li>
+          <li>Passwords, sessions, roles and permissions</li>
+          <li>Audit trail of who changed what, and when</li>
+          <li>Format checks for GSTIN, PAN, IFSC and pincode (checking they really exist is outside)</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 class="label">Business logic</h3>
+        <ul class="list">
+          <li>GST, discount and total calculations; amounts in words in lakh and crore</li>
+          <li>PDF quotes and invoices using a library</li>
+          <li>QR code and barcode images; charts and dashboards</li>
+          <li>Excel and CSV import and export</li>
+          <li>Reminders and scheduled jobs (the hosting supplies the timer)</li>
+          <li>Duplicate-lead checks and lead assignment rules</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 class="label">Phone and browser features</h3>
+        <ul class="list">
+          <li>Camera capture, file upload and GPS reading while the app is open</li>
+          <li>Offline use and install-to-home-screen (PWA)</li>
+          <li>Fingerprint or face login (passkeys)</li>
+          <li>Tap-to-call and tap-to-WhatsApp links</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="pick-h">
+    <div class="sec-head">
+      <h2 id="pick-h">Before you pick a vendor</h2>
+      <p>Ask each one these questions. The answers decide cost, speed and lock-in.</p>
+    </div>
+    <div class="panel check">
+      <ul class="list">
+        <li><span>Is there an API with public documentation, and does it send webhooks?</span></li>
+        <li><span>Is there a free test mode (sandbox) for development?</span></li>
+        <li><span>What does each unit cost (message, call, user, transaction), and who pays: you or the client?</span></li>
+        <li><span>Where is the data stored, and can you export all of it if you leave?</span></li>
+        <li><span>Which approvals or KYC are needed, and how long do they take?</span></li>
+      </ul>
+      <p class="tip"><b>Account ownership.</b> Open KYC-bound accounts in the client’s name: payment gateway, WhatsApp Business, SMS DLT and GST access. Your team gets user access. Moving these accounts later means redoing KYC.</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="src-h">
+    <div class="sec-head">
+      <h2 id="src-h">Sources for specific claims</h2>
+      <p>Pages checked while building this catalogue. Everything else reflects general industry knowledge.</p>
+    </div>
+    <ul class="sources">
+      <li><a href="https://support.stripe.com/questions/stripe-accounts-are-invite-only-in-india" target="_blank" rel="noopener">Stripe: accounts are invite-only in India</a></li>
+      <li><a href="https://help.indiamart.com/knowledge-base/integration-of-indiamarts-lead-manager-crm-push-api-with-third-party-crms-real-time-push-of-leads" target="_blank" rel="noopener">IndiaMART: CRM Push API for paid sellers</a></li>
+      <li><a href="https://help.callyzer.co/article/how-call-recording-synchronization-works-with-callyzer/" target="_blank" rel="noopener">Callyzer: how call recording sync works</a></li>
+      <li><a href="https://telecrm.in/blog/sim-based-call-tracking/" target="_blank" rel="noopener">TeleCRM: SIM-based call tracking</a></li>
+      <li><a href="https://unolo.com/" target="_blank" rel="noopener">Unolo: field force tracking with APIs</a></li>
+      <li><a href="https://trackobit.com/field-employee-management-tracking-software" target="_blank" rel="noopener">TrackoField: field employee tracking</a></li>
+      <li><a href="https://www.canva.dev/docs/connect/api-reference/autofills/" target="_blank" rel="noopener">Canva Connect: autofill plan requirement</a></li>
+      <li><a href="https://help.tallysolutions.com/tally-connector/" target="_blank" rel="noopener">TallyHelp: sending XML/JSON requests to TallyPrime</a></li>
+      <li><a href="https://blogs.intuit.com/2023/03/22/discontinuation-of-quickbooks-in-india/" target="_blank" rel="noopener">Intuit: discontinuation of QuickBooks in India</a></li>
+      <li><a href="https://sandbox.co.in/" target="_blank" rel="noopener">Sandbox by Quicko: tax and KYC APIs</a></li>
+      <li><a href="https://www.incorpx.io/blog/gst-e-invoice-turnover-limit-2026" target="_blank" rel="noopener">E-invoicing limit of ₹5 crore (secondary source; confirm with CBIC)</a></li>
+      <li><a href="https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement" target="_blank" rel="noopener">Microsoft: Bing Search APIs retired 11 Aug 2025</a></li>
+      <li><a href="https://developers.google.com/custom-search/v1/overview" target="_blank" rel="noopener">Google: Custom Search JSON API closed to new customers</a></li>
+      <li><a href="https://developers.google.com/maps/documentation/solar/coverage" target="_blank" rel="noopener">Google Solar API: coverage map</a></li>
+      <li><a href="https://maps.olakrutrim.com/pricing" target="_blank" rel="noopener">Ola Maps: API pricing</a></li>
+      <li><a href="https://www.bigmint.co/" target="_blank" rel="noopener">BigMint (formerly SteelMint): commodity prices</a></li>
+      <li><a href="https://apiportal.probe42.in/v1/" target="_blank" rel="noopener">Probe42: company data API portal</a></li>
+      <li><a href="https://bureau.id/" target="_blank" rel="noopener">Bureau: fraud and device intelligence</a></li>
+      <li><a href="https://www.bolna.ai/" target="_blank" rel="noopener">Bolna: voice AI agents for Indian languages</a></li>
+      <li><a href="https://www.leegality.com/digital-stamping" target="_blank" rel="noopener">Leegality: digital stamping</a></li>
+      <li><a href="https://tray.ai/blog/welcome-to-tray-ai/" target="_blank" rel="noopener">Tray.io is now Tray.ai</a></li>
+    </ul>
+    <p class="foot">Vendor names are examples, not endorsements. Features, prices and rules change often, so confirm with the vendor before quoting a client. Legal and regulatory notes are general pointers, not legal advice. The top 15 ranking is a judgment, not survey data.</p>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  var TAGS = {
+    core: {label:'Common',      desc:'A typical business app uses this.'},
+    'in': {label:'India',       desc:'Indian vendors, rules or government systems.'},
+    appr: {label:'Approval',    desc:'The platform must approve your app, template or account before it works.'},
+    lic:  {label:'Licence',     desc:'The law limits who can use it directly. Go through a licensed vendor, or it is only for regulated businesses.'},
+    free: {label:'Free option', desc:'A free tier, free public data, or open-source software you can host yourself.'},
+    risk: {label:'Risk',        desc:'Can break a website’s terms or privacy law if used carelessly.'},
+    'new':{label:'New',         desc:'Added in the 27 Sep 2026 update.'}
+  };
+  var TAG_ORDER = ['core','in','appr','lic','free','risk'];
+  var CHIP_ORDER = TAG_ORDER.concat(['new']);
+
+  function R(n, d, v, t, w){ return {n:n, d:d, v:v, t:t || [], w:w || '', nw:false}; }
+  function N(n, d, v, t, w){ var r = R(n, d, v, t, w); r.nw = true; return r; }
+
+  var DATA = {
+    ID: {name:'Identity & login', q:'Who is this user?',
+      plain:'The front door of the app. It checks who someone is before letting them in, like a receptionist checking an ID card.',
+      build:'Buy. Login is easy to get wrong and costly when it is hacked, and managed login services cost little at SMB scale.',
+      watch:'Decide early how each client’s staff will log in (phone OTP, Google account or company SSO). Changing it later touches every screen.',
+      rows:[
+      R('Login & user accounts','Ready-made sign-up, login, password reset and sessions.','Supabase Auth, Firebase Authentication, Clerk, Auth0, AWS Cognito, Keycloak (open source)',['core','free']),
+      R('Sign in with Google, Microsoft or Apple','One-tap login with accounts people already have. Ideal for staff at clients on Google Workspace or Microsoft 365.','Google Identity Services, Microsoft Entra ID, Sign in with Apple, Facebook Login',['core','free']),
+      R('OTP delivery','Your app creates and checks the code. The vendor only delivers it by SMS, WhatsApp, voice call or email.','MSG91, 2Factor, Twilio Verify, Gupshup',['core','in'],'SMS OTP in India needs DLT registration of the sender ID and the message template.'),
+      R('Truecaller one-tap verification','Confirms a phone number instantly for users who have Truecaller, with no SMS cost.','Truecaller SDK',[],'Keep OTP as the fallback for users without Truecaller.'),
+      R('Company single sign-on (SSO)','Lets a large client’s IT team control who can log in, through their own identity system.','WorkOS, Auth0, Okta, Microsoft Entra ID',[],'Usually requested only by bigger corporate clients.'),
+      R('Passkeys (fingerprint or face login)','Login with the phone’s fingerprint or face instead of a password.','Built into browsers and phones (WebAuthn); SimpleWebAuthn (open source); most login platforms above',['free']),
+      R('Advanced permissions','Rules such as “branch managers see only their branch”, managed as a service once they get complex.','Permit.io, Oso, Cerbos (open source)',['free'],'Simple roles are easy to build in-house. Use these when the rules multiply.'),
+      N('Two-factor login (MFA)','A second check after the password: a code from an authenticator app, an SMS or a passkey.','Built into login platforms (Auth0, Clerk, Supabase Auth, Firebase); Google Authenticator and Microsoft Authenticator for users; open-source TOTP libraries',['core','free'],'Turn it on at least for admins and anyone who can see money or customer data.')
+    ]},
+    KYC: {name:'Verification & KYC', q:'Is this person or business real?',
+      plain:'Background checks done by software: is this PAN real, does this bank account belong to this vendor, is this company registered?',
+      build:'Always buy. Only licensed vendors can reach most government and bank records.',
+      watch:'Store the result and the consent record, not raw Aadhaar data. Personal data carries legal duties under India’s DPDP Act.',
+      rows:[
+      R('PAN verification','Confirms a PAN is valid and matches the name given.','Sandbox (Quicko), Cashfree, Signzy, Surepass, IDfy',['in']),
+      R('Aadhaar verification','Identity check through Aadhaar OTP, offline XML or DigiLocker.','Digio, Signzy, IDfy, HyperVerge, Sandbox (Quicko)',['in','lic'],'Aadhaar use is restricted by law. Go through a licensed vendor and record the person’s consent.'),
+      R('DigiLocker document fetch','Pulls government-issued documents such as PAN, driving licence and marksheets, with the user’s consent.','DigiLocker partner APIs, Setu, Signzy, IDfy, Digio',['in','appr'],'Direct access needs DigiLocker onboarding. Vendors are faster to start with.'),
+      R('Bank account & UPI ID check','Confirms an account number and IFSC, or a UPI ID, and returns the holder’s name. Use it before paying a new vendor.','RazorpayX (fund account validation), Cashfree, Decentro, Signzy',['in']),
+      R('Business registration checks','Confirms GSTIN, CIN, Udyam, IEC or FSSAI registrations and pulls official details.','Sandbox (Quicko), Surepass, Signzy, Probe42',['in'],'Each vendor covers a different set of registries. Check before choosing.'),
+      R('Company financials & directors','Balance sheets, charges, directors and filings for due diligence or dealer credit limits.','Probe42 (API), Tofler (reports)',['in']),
+      R('Face match & liveness','Checks a selfie is a live person and matches the ID photo.','HyperVerge, IDfy, Signzy, AWS Rekognition',[],'Biometric data is sensitive. Take explicit consent and store as little as possible.'),
+      R('Video KYC','Live, recorded video call to verify a customer remotely.','IDfy, Signzy, HyperVerge',['in','lic'],'Mainly for RBI, SEBI or IRDAI-regulated businesses, which must follow their regulator’s process.'),
+      R('Background verification','Checks address, education, past jobs and court records of new hires or vendors.','AuthBridge, IDfy, SpringVerify',['in']),
+      R('Credit reports & scores','Credit history of a person or business, for example before giving a dealer credit.','TransUnion CIBIL, Experian, Equifax, CRIF High Mark',['in','lic'],'Access is limited to bureau members (lenders) and approved partners. Check eligibility before designing around it.'),
+      R('Bank data via Account Aggregator','Customers share bank statements digitally with consent, instead of sending PDFs.','Account Aggregators: Finvu, OneMoney, CAMSfinserv. Tech partner: Setu',['in','lic'],'Only regulated financial entities can receive this data.'),
+      R('Vehicle & driving licence checks','Verifies vehicle RC and driving licence details from Parivahan records, for transport and logistics clients.','Surepass, Signzy, IDfy',['in']),
+      R('Central KYC (CKYC) records','Fetches an existing KYC record from the central registry so customers need not repeat KYC.','CERSAI CKYC registry',['in','lic'],'Available only to regulated financial entities.')
+    ]},
+    SEC: {name:'Security & bot checks', q:'Is it a human? Is the app safe?',
+      plain:'The guards, locks and CCTV of the app: stop bots, block attacks, and keep passwords and keys safe.',
+      build:'Buy, or use the free tiers. Security tools are cheap compared with one breach.',
+      watch:'Put rate limits on anything that sends an OTP or SMS. Bots can run up a large bill overnight.',
+      rows:[
+      R('CAPTCHA & bot detection','Tells humans from bots on sign-up, login and enquiry forms.','Cloudflare Turnstile, Google reCAPTCHA, hCaptcha',['core','free'],'Check current free limits. Turnstile does not use picture puzzles.'),
+      R('Web firewall & DDoS protection','Blocks attacks and floods of fake traffic before they reach the app.','Cloudflare, AWS WAF, Akamai, Imperva',['core','free']),
+      R('Rate limiting','Caps how often one person or bot can hit login, OTP or search. Stops abuse and surprise SMS bills from OTP-pumping fraud.','Cloudflare, AWS API Gateway, Kong (open source), Upstash Ratelimit',['free']),
+      R('Fraud & risk scoring','Scores sign-ups, orders or payments for fraud risk, such as fake accounts or cash-on-delivery abuse.','Bureau, SEON, Sift; payment gateways’ built-in risk tools'),
+      R('Device fingerprinting','Recognises the same phone or browser across accounts, to catch duplicate sign-ups and referral abuse.','Fingerprint, Bureau'),
+      R('Virus scan on uploads','Scans files that users upload before anyone opens them.','ClamAV (open source), AWS GuardDuty Malware Protection for S3',['free']),
+      R('Secrets & key storage','Keeps API keys and passwords out of the code, with access control.','AWS Secrets Manager, Google Secret Manager, Doppler, Infisical (open source), HashiCorp Vault',['core','free']),
+      R('Code & dependency scanning','Finds known security holes in the app’s code and libraries.','GitHub Dependabot, Snyk, SonarQube, OWASP ZAP (open source)',['free']),
+      R('SSL certificates (HTTPS)','Encrypts traffic. Browsers warn visitors without it.','Let’s Encrypt (free), Cloudflare, DigiCert, Sectigo',['core','free']),
+      R('Email domain protection','SPF, DKIM and DMARC setup and monitoring. Stops spoofing of the client’s domain and improves inbox delivery.','EasyDMARC, dmarcian, Postmark DMARC monitoring',['free']),
+      R('Consent & privacy tools','Cookie banners, consent records and handling of data-deletion requests.','CookieYes, OneTrust, Cookiebot',[],'India’s DPDP Act governs personal data. Check the current rules on consent records before launch.'),
+      N('Security testing (VAPT)','Independent testers try to break into the app before launch and report what they find.','CERT-In empanelled auditors; tools: OWASP ZAP (open source), Burp Suite',['in'],'Government departments usually require an audit by a CERT-In empanelled auditor, and large companies often ask for a recent VAPT report.')
+    ]},
+    MSG: {name:'Messaging & notifications', q:'How do we reach people?',
+      plain:'How the app talks to people: WhatsApp, SMS, email and phone alerts. The app decides what to say; the vendor delivers it.',
+      build:'Buy the delivery. Build the logic (who gets which message, and when) inside your app.',
+      watch:'Put each channel behind your own small “send message” adapter, so you can switch vendors without rewriting the app.',
+      rows:[
+      R('SMS','Order updates, reminders, OTPs and offers by text message.','MSG91, Gupshup, Kaleyra, Route Mobile, Exotel, Twilio',['core','in'],'India requires DLT registration of the business, each sender ID and each message template. Promotional SMS won’t reach numbers on DND.'),
+      R('WhatsApp Business Platform','Send quotes, invoices, reminders and updates, and chat with customers, from inside the app.','Meta WhatsApp Cloud API; providers: Gupshup, Interakt, AiSensy, WATI, Twilio, 360dialog',['core','appr'],'Meta approves every template and charges per template message by category. Customers must opt in.'),
+      R('RCS business messages','Rich texts with images, buttons and a verified brand name, in the phone’s default messaging app.','Gupshup, Route Mobile, Dotgo',['appr'],'Reach depends on the phone and carrier. Check Indian coverage before planning a campaign.'),
+      R('Transactional email','Receipts, password resets, statements and alerts, with delivery, open and bounce tracking.','Amazon SES, ZeptoMail (Zoho), Postmark, SendGrid, Mailgun, Brevo, Resend',['core'],'Set up SPF, DKIM and DMARC on the sending domain, or mail lands in spam.'),
+      R('Email marketing','Newsletters, campaigns and drip sequences.','Brevo, Mailchimp, Zoho Campaigns, MailerLite, Klaviyo',['free']),
+      R('Email into the app','Emails sent to a set address become records. An RFQ emailed to rfq@ becomes an enquiry.','SendGrid Inbound Parse, Mailgun Routes, Postmark Inbound, Cloudflare Email Routing'),
+      R('Mobile push notifications','Alerts on the phone’s lock screen from your own app.','Firebase Cloud Messaging, Apple Push Notification service, OneSignal, Expo',['core','free']),
+      R('Web push notifications','Browser alerts from a website, even when the tab is closed.','OneSignal, Firebase Cloud Messaging',['free']),
+      R('Customer engagement platforms','Automated journeys across push, SMS, WhatsApp and email, triggered by what each user does.','MoEngage, CleverTap, WebEngage, Netcore Cloud, Braze'),
+      R('In-app chat','Chat between users inside your app, such as dealer to sales rep or client to agency.','Stream, Sendbird, CometChat, PubNub, Rocket.Chat (open source)',['free']),
+      R('Website live chat','Chat widget on the website, answered by staff or a bot.','Tawk.to (free), Zoho SalesIQ, Crisp, Intercom, Freshchat',['free']),
+      R('Video calls & meetings','Video calls inside the app, or meeting links created automatically for bookings.','Zoom API, Google Meet API, Microsoft Teams (Graph API), 100ms, Agora, Daily, LiveKit (open source), Jitsi (open source)',['free']),
+      R('Social media publishing & inbox','Schedule posts and read comments and messages across Facebook, Instagram, LinkedIn and YouTube.','Meta Graph API, LinkedIn API, YouTube Data API, X API, Pinterest API, Ayrshare (one API for many networks); TikTok API for clients outside India',['appr'],'Most networks review your app before granting access. X’s API has paid tiers for most uses. TikTok is banned in India.')
+    ]},
+    TEL: {name:'Calls & telephony', q:'Phone calls in and out.',
+      plain:'Connects phone calls to the software, so every call is logged, recorded and linked to the right customer.',
+      build:'Buy. Business telephony in India needs licences and DLT, and providers already have them.',
+      watch:'Choose between a cloud number (works on any phone, calls pass through the provider) and SIM tracking (staff keep their own numbers, Android only).',
+      rows:[
+      R('Cloud telephony & IVR','Business numbers that route calls to staff phones, with menus, recordings and reports.','Exotel, MyOperator, Knowlarity, Ozonetel, Tata Tele Business Services (Smartflo), Airtel IQ',['core','in'],'Works on any phone, because calls pass through the provider.'),
+      R('Click-to-call from the CRM','A rep taps a number in the CRM, both phones ring, and the call, recording and outcome (interested, call back, wrong number) save to that lead.','Exotel, MyOperator, Knowlarity, Ozonetel',['in']),
+      R('Call masking','Customers and staff talk without seeing each other’s real numbers.','Exotel, Knowlarity',['in']),
+      R('Missed-call numbers','A customer gives a missed call and the app sends a price list or logs a lead.','Exotel, MyOperator, Knowlarity',['in']),
+      R('SIM call tracking on staff phones','An Android app logs calls made from ordinary SIMs and uploads the phone’s own recordings.','Callyzer, TeleCRM, Runo',['in'],'Android only, and recording depends on the phone’s built-in dialer because Android blocks most call recording by other apps. Building your own? Google Play restricts call-log access, so read its permissions policy first. Take staff and customer consent.'),
+      R('Programmable voice (global)','Custom call flows written in code.','Twilio, Plivo, Vonage, Telnyx',[],'Indian numbers and calls have regulatory limits. Confirm India support before choosing.'),
+      R('Voice broadcast & IVR surveys','Automated calls to many numbers for reminders, surveys or payment nudges.','Exotel, Knowlarity',['in'],'Follow TRAI telemarketing and DND rules.'),
+      R('Contact-centre software','Call queues, agent dashboards and supervisor listen-in, for teams that take many calls.','Ozonetel, Exotel, Freshdesk Contact Center, Amazon Connect, Genesys'),
+      R('Call analytics & coaching','Transcribes and scores sales calls: talk time, objections, promises made.','Convin, Observe.AI, Gong; or build with speech-to-text plus an LLM (see the AI group)')
+    ]},
+    MKT: {name:'Marketing & analytics', q:'Win customers and measure what works.',
+      plain:'Brings leads in from ads and search, and shows which campaigns turn into sales.',
+      build:'Connect rather than build. The ad platforms’ own APIs are free; the approvals take time.',
+      watch:'Apply early for Google Ads and Meta API access. Reviews can take days or weeks.',
+      rows:[
+      R('Instant lead sync from ads','Facebook, Instagram, Google and LinkedIn lead-form entries reach the CRM within seconds.','Meta Lead Ads webhooks, Google Ads lead form webhook, LinkedIn Lead Gen Forms',['core']),
+      R('Ad platform APIs','Create campaigns, change budgets and pull reports from your own dashboard.','Google Ads API, Meta Marketing API, LinkedIn Marketing API, Microsoft Advertising API, Amazon Ads API',['appr'],'Google Ads needs an approved developer token. Meta and LinkedIn review your app.'),
+      R('Offline conversions','Tell Google and Meta which leads became sales, so their bidding chases buyers.','Google Ads offline conversion import and enhanced conversions for leads, Meta Conversions API'),
+      R('Call tracking for ads','Shows which ad or keyword made the phone ring.','Tracking numbers from Exotel, MyOperator or Knowlarity; Google Ads call reporting',['in']),
+      R('Website & app analytics','Traffic, funnels and events.','Google Analytics 4 (Data API), Mixpanel, Amplitude, PostHog (open source), Matomo (open source)',['core','free']),
+      R('Heatmaps & session recordings','See how visitors scroll and click.','Microsoft Clarity (free), Hotjar, PostHog',['free']),
+      R('Tag management & server-side tracking','Manage tracking tags without code changes. Server-side tracking is less affected by ad blockers.','Google Tag Manager, server-side GTM, Stape',['free']),
+      R('App install attribution','Shows which ad or link brought each app install.','AppsFlyer, Branch, Adjust'),
+      R('SEO data','Rankings, keywords, backlinks and page speed.','Google Search Console API, PageSpeed Insights API, Semrush API, Ahrefs API, DataForSEO',['free']),
+      R('Google Business Profile','Manage listings, posts and review replies for one or many locations.','Google Business Profile APIs',['appr'],'API access has to be requested from Google.'),
+      R('Reviews & reputation','Ask for reviews after delivery and track ratings across sites.','Birdeye, Trustpilot, Google Business Profile',[],'Collect genuine reviews only. Paid or fake reviews break platform rules.'),
+      R('Marketing automation','Automated email and WhatsApp nurture sequences based on what each lead does.','HubSpot, Zoho Marketing Automation, Brevo, ActiveCampaign'),
+      R('Social listening','Track brand mentions and competitor chatter.','Brandwatch, Sprinklr, Meltwater'),
+      R('Short links & trackable QR codes','Branded short links, and QR codes on print material that count scans and clicks.','Bitly, Rebrandly, Short.io'),
+      R('Loyalty & referrals','Points, rewards and refer-a-friend programmes.','Capillary, Easyrewardz, Smile.io, ReferralCandy')
+    ]},
+    PAY: {name:'Payments & money', q:'How does money move?',
+      plain:'Lets the app collect and send money, and matches payments to invoices automatically.',
+      build:'Always buy. Only RBI-authorised payment companies can handle the money.',
+      watch:'Mark an invoice paid only when the gateway’s webhook (or a server check) confirms it, never because the customer’s browser says so.',
+      rows:[
+      R('Payment gateway','Accept UPI, cards, net banking and wallets online.','Razorpay, Cashfree, PayU, CCAvenue, PhonePe Payment Gateway, Paytm Payment Gateway, Easebuzz',['core','in'],'The gateway account is KYC’d to the business, so open it in the client’s name.'),
+      R('Payment links','Send a link with a quote or PI. The customer pays and the app updates the status by itself.','Razorpay, Cashfree, PayU, Instamojo',['in']),
+      R('UPI QR codes','A unique QR per invoice, so every payment matches its bill.','Razorpay, Cashfree, PhonePe, Paytm',['in']),
+      R('Recurring payments & mandates','Auto-debit for retainers, subscriptions and EMIs through UPI AutoPay, e-NACH or card mandates.','Razorpay, Cashfree, PayU; billing software: Chargebee, Zoho Billing',['in'],'RBI mandate rules apply, including pre-debit notifications and value limits.'),
+      R('Virtual accounts & auto-matching','Each customer gets a unique account number, so NEFT and RTGS payments match to them automatically.','Razorpay Smart Collect, Cashfree Auto Collect, Decentro, bank APIs',['in']),
+      R('Payouts','Pay vendors, refunds, incentives or salaries in bulk from the app.','RazorpayX Payouts, Cashfree Payouts, Decentro, bank APIs',['in']),
+      R('Direct bank APIs','The app talks straight to the client’s bank for balances, statements and payments.','ICICI Bank, HDFC Bank, Axis Bank, YES BANK (corporate API banking)',['in','appr'],'Needs a current account and the bank’s approval. Setup can take weeks.'),
+      R('International payments','Collect from overseas customers.','PayPal, Razorpay, Skydo, Wise Business, Payoneer, Stripe (invite-only in India)',[],'In India, PayPal handles international payments only. Keep FIRA and export paperwork in order.'),
+      R('Currency rates','Daily or live exchange rates for export quotes.','Open Exchange Rates, Fixer, Frankfurter (free, ECB rates)',['free']),
+      R('In-store card & UPI machines','POS terminals and soundboxes that report payments to the app.','Pine Labs, Razorpay POS, Paytm, PhonePe',['in'],'Check which terminal models offer an integration API.'),
+      R('Expense management & company cards','Staff cards and expense claims with receipts, synced to the accounts.','Zoho Expense, Happay, Zaggle, Volopay'),
+      R('Invoice discounting (TReDS)','MSMEs get paid early on invoices raised to large buyers.','RXIL, M1xchange, Invoicemart',['in'],'RBI-regulated platforms. Check whether each one offers an API.'),
+      R('EMI & pay-later at checkout','Buyers pay in instalments through their bank or lender.','Enabled through gateways such as Razorpay, Cashfree and PayU',['in'])
+    ]},
+    GOV: {name:'Tax & government', q:'Stay compliant in India.',
+      plain:'Connects the app to GST and other government systems, so compliance happens as a side effect of normal work.',
+      build:'Buy through a GST Suvidha Provider (GSP) or a tax API vendor; direct government access is limited.',
+      watch:'Government portals slow down near filing deadlines. Queue the requests, retry, and show staff what is still pending.',
+      rows:[
+      R('GSTIN lookup & auto-fill','Type a GSTIN and get the legal name, address and filing status.','Masters India, Clear (ClearTax), IRIS, Sandbox (Quicko)',['in']),
+      R('E-invoicing (IRN and signed QR)','Registers B2B invoices on the government portal and returns the signed QR for the invoice.','Clear, Masters India, IRIS, Cygnet, Sandbox (Quicko)',['in','appr'],'Mandatory above ₹5 crore annual turnover (the limit since Aug 2023; check CBIC for changes). Access usually runs through a GST Suvidha Provider (GSP).'),
+      R('E-way bills','Generate e-way bills for goods movement straight from the invoice.','The same GST vendors; NIC e-way bill API',['in','appr']),
+      R('GST returns & 2B matching','Pull GSTR-2B to match purchase invoices, and prepare GSTR-1 data.','Clear, Masters India, IRIS, Sandbox (Quicko)',['in','appr'],'The taxpayer must enable API access on the GST portal and approve with OTP.'),
+      R('TDS calculation & returns','Work out TDS on payments and prepare quarterly returns.','Sandbox (Quicko), Clear',['in']),
+      R('HSN/SAC codes & GST rates','Suggest the right HSN or SAC code and GST rate while creating products.','HSN lists published on the GST and CBIC portals; some GST API vendors offer lookups',['in','free']),
+      R('Digital stamp paper','Buy stamp paper online and attach it to agreements before e-signing.','Leegality, SignDesk, Legistify; SHCIL',['in'],'Availability and rules differ by state.'),
+      R('Tender alerts','New tenders from GeM, CPPP and state portals that match your keywords.','TenderTiger, Tender247, BidAssist (check API access)',['in'],'No public bidder API is known for GeM or CPPP. Aggregators or browser automation fill the gap.'),
+      R('Open government data','Free official datasets such as mandi prices, pincodes and district data.','data.gov.in (Open Government Data Platform India)',['in','free']),
+      R('Pincode directory','Validate pincodes and auto-fill post office, district and state.','data.gov.in pincode dataset; community pincode APIs (unofficial)',['in','free']),
+      R('PF & ESI compliance','Salary-linked PF and ESI contributions and returns.','Payroll software: Keka, greytHR, Zoho Payroll, RazorpayX Payroll',['in'],'EPFO and ESIC filing is mostly by portal upload. No public API is known.')
+    ]},
+    MAP: {name:'Maps & location', q:'Where is it?',
+      plain:'Answers “where?”: addresses to map pins, distances, routes, and where staff are right now.',
+      build:'Buy the maps. Build the business rules (who visited which dealer, how much travel allowance) yourself.',
+      watch:'Map APIs bill per request. Store results such as a customer’s coordinates where the provider’s terms allow, instead of looking them up every time.',
+      rows:[
+      R('Maps, address search & geocoding','Show maps, autocomplete addresses, and turn addresses into coordinates and back.','Google Maps Platform, Mappls (MapmyIndia), Ola Maps, Mapbox, HERE, LocationIQ, OpenStreetMap (open data)',['core','free']),
+      R('Distance & travel time','Kilometres between sites, arrival times, distance-based travel claims.','Google Routes API, Mappls, Ola Maps, Mapbox, OSRM (open source), GraphHopper, OpenRouteService (open source)',['free']),
+      R('Route planning for many stops','The best order to visit 20 dealers or deliver 50 orders.','Google Route Optimization API, Locus, LogiNext, OR-Tools (open source)',['free']),
+      R('Live tracking of field staff','Current location and full movement history of sales and service staff.','Ready apps with APIs: Unolo (also compare TrackoField, Lystloc, Tracolap). Build your own on Android Location Services and iOS Core Location, with SDKs such as Radar or Transistorsoft Background Geolocation',[],'Needs an installed mobile app. Some Android brands kill background apps. Get written consent from staff.'),
+      R('Geofencing & verified check-ins','Auto check-in when a rep reaches a client site; attendance only inside the office radius.','Radar, Unolo; built into Android and iOS',['free']),
+      R('Vehicle GPS & fleet','Truck location, trips, stoppages and fuel from GPS devices.','Fleetx, LocoNav, tracker makers’ platforms (check API)',['in'],'Needs a GPS device in each vehicle.'),
+      R('IP location','Country and city from a visitor’s internet address, for fraud checks or local pricing.','MaxMind (GeoLite2 is free), ipinfo, IP2Location',['free']),
+      R('Satellite & aerial imagery','Site surveys, land parcels and rooftop views.','Google Maps Platform (satellite tiles), Sentinel Hub, Planet, ISRO Bhuvan (check access)'),
+      R('Solar & sunlight data','Sunlight data to size solar systems and estimate generation.','NASA POWER (free), Solcast, Google Solar API (check its coverage map for your area)',['free']),
+      R('Weather','Forecasts and history for site work, farming and energy planning.','Open-Meteo (open source; paid plan for commercial API use), OpenWeatherMap, Tomorrow.io',['free']),
+      R('Business listings data','Names, hours and contact details of businesses, for dealer mapping or lead lists.','Google Places API, Mappls, Ola Maps',[],'Each provider sets display and storage rules. Read them before saving data.'),
+      N('Sales force automation apps','Ready apps for FMCG-style field teams: beat plans, outlet visits, order booking and attendance.','FieldAssist, Bizom, TrackoField, Unolo',['in'],'Often cheaper to integrate than to rebuild. Check each one’s API before promising a client a sync.')
+    ]},
+    LOG: {name:'Logistics & commerce', q:'Move and sell goods.',
+      plain:'Connects orders to couriers and marketplaces: book pickups, print labels, track parcels, pull in orders.',
+      build:'Buy an aggregator first. Connect couriers directly only when volume justifies it.',
+      watch:'Every courier names its statuses differently. Map them to your own short list (booked, in transit, delivered, returned).',
+      rows:[
+      R('Shipping aggregators','Compare courier rates, book pickups, print labels, track parcels and handle cash-on-delivery (COD) remittance.','Shiprocket, Shipway, NimbusPost, iThink Logistics',['in']),
+      R('Direct courier APIs','Booking and tracking straight with one courier.','Delhivery, Blue Dart, DTDC (check API access)',['in']),
+      R('Tracking pages & delivery alerts','A branded tracking page plus WhatsApp and SMS updates across couriers.','ClickPost, AfterShip, Shiprocket'),
+      R('Same-city delivery','Bike and mini-truck pickups within a city.','Porter, Borzo (check API access)',['in']),
+      R('Inventory & warehouses','Stock across warehouses and sales channels.','Unicommerce, EasyEcom, Zoho Inventory'),
+      R('Online store platforms','Sync products, prices, orders and stock with the client’s online store.','Shopify, WooCommerce (open source), Zoho Commerce, Adobe Commerce',['free']),
+      R('Marketplace seller APIs','Manage Amazon and Flipkart listings, orders and settlements from one app.','Amazon Selling Partner API, Flipkart Marketplace Seller APIs, ONDC (through a seller app)',['appr']),
+      R('B2B lead marketplaces','Enquiries from IndiaMART and similar sites land in the CRM automatically.','IndiaMART (Pull and Push APIs), TradeIndia, Justdial (check API access)',['in'],'IndiaMART’s API is for paid sellers and is do-it-yourself. IndiaMART gives no integration support.'),
+      R('Retail barcode numbers','Official GS1 barcode numbers for products sold in retail. Printing the barcode image is built-in.','GS1 India',['in']),
+      N('International courier APIs','Rates, labels and tracking for export shipments.','FedEx, DHL Express, UPS, Aramex')
+    ]},
+    IOT: {name:'Devices & IoT', q:'Physical devices and machines.',
+      plain:'Lets software read from and control physical things: machines, meters, scales, printers and cameras.',
+      build:'Buy the device cloud. Build the dashboards and alerts.',
+      watch:'Factory and site internet drops. Devices or gateways should store readings and send them when the connection returns.',
+      rows:[
+      R('IoT device cloud (MQTT)','Collect readings from sensors and controllers, and send commands back.','AWS IoT Core, Azure IoT Hub, ThingsBoard (open source), Blynk, HiveMQ, EMQX',['free']),
+      R('Factory machines & PLCs','Read machine run-time, counts and alarms over OPC UA or Modbus.','Kepware, Ignition, Node-RED (open source)',['free'],'Usually needs a gateway PC or device on the shop floor.'),
+      R('Energy meters','Read kWh, power factor and demand from meters over Modbus.','Modbus meters through the IoT gateways above'),
+      R('Solar inverter monitoring','Pull generation data from customers’ inverters into your dashboard.','SolarEdge API, Enphase API, Huawei FusionSolar; other brands: check the inverter’s cloud portal'),
+      R('Biometric attendance devices','Fingerprint or face machines feed attendance into HR and payroll.','ZKTeco, eSSL, Matrix COSEC',[],'Some models need a small connector on a local PC.'),
+      R('Weighing scales & weighbridges','Weights flow straight into dispatch or purchase entries, with no retyping.','Serial or USB connection through a small local connector'),
+      R('Label & receipt printers','Print labels, receipts or dispatch slips from the app.','PrintNode (cloud printing), Zebra SDKs, browser printing (built-in)'),
+      R('Barcode, QR & RFID scanning','Scan stock, assets and documents.','Phone camera (built-in), Zebra and Honeywell scanners, RFID reader SDKs',['free']),
+      R('CCTV & IP cameras','Snapshots or clips linked to events, such as a truck at the gate.','ONVIF-standard cameras, Hikvision SDK')
+    ]},
+    DOC: {name:'Documents & files', q:'Paperwork, files and signatures.',
+      plain:'Makes, stores, reads and signs paperwork: quotes, invoices, agreements, photos and recordings.',
+      build:'Mixed. PDFs can be built in-house; e-sign and stamp paper must come from licensed vendors.',
+      watch:'Keep the original file next to the data extracted from it, so staff can check what the software read.',
+      rows:[
+      R('File storage','Uploads such as drawings, site photos, PDFs and call recordings.','Amazon S3, Cloudflare R2, Google Cloud Storage, Azure Blob Storage, Supabase Storage, Firebase Storage, Backblaze B2',['core']),
+      R('Image & video delivery','Resize, compress and serve images and videos quickly.','ImageKit, Cloudinary, imgix, Mux (video), Bunny Stream'),
+      R('Client’s own cloud drive','Save files into the client’s Google Drive, OneDrive or Dropbox.','Google Drive API, Microsoft Graph (OneDrive, SharePoint), Dropbox, Box, Zoho WorkDrive'),
+      R('PDF generation','Quotes, PIs, invoices and reports as PDFs.','Built-in libraries (headless Chrome), Gotenberg (open source), Adobe PDF Services, DocRaptor, PDFMonkey',['core','free']),
+      R('File conversion','Word to PDF, Excel to CSV, image formats.','CloudConvert, ConvertAPI, LibreOffice (open source)',['free']),
+      R('OCR & document reading','Pull data from scanned RFQs, supplier invoices, visiting cards and handwritten notes.','AI vision models (Claude, GPT, Gemini), Google Document AI, AWS Textract, Azure Document Intelligence, Tesseract (open source)',['free']),
+      R('E-signatures','Sign agreements, POs and offer letters online.','Leegality, Digio, SignDesk, Zoho Sign, DocuSign, Adobe Acrobat Sign, Dropbox Sign',[],'Aadhaar eSign runs through licensed providers. These vendors handle that.'),
+      R('DSC signing (USB token)','Sign with a Class 3 digital signature certificate, as tenders and many government filings require.','eMudhra (emBridge) and other certifying authorities’ signer tools',['in'],'Needs a small signer program on the user’s computer.'),
+      R('Document templates & mail merge','Fill Word or Google Docs templates with data from the app.','Google Docs API, Microsoft Graph (Word), Carbone (open source), Docmosis',['free']),
+      R('Spreadsheets as input or output','Read or write Google Sheets and Excel, such as price lists or daily reports.','Google Sheets API, Microsoft Graph (Excel), Airtable, NocoDB (open source), Baserow (open source)',['free']),
+      R('Online forms & surveys','Ready-made forms whose answers flow into the app.','Google Forms API, Typeform, Jotform, Tally forms (tally.so, not TallyPrime), Zoho Forms, SurveyMonkey',['free']),
+      R('Help articles & SOPs','Guides and SOPs linked from inside the app.','Notion API, Confluence, Google Docs'),
+      N('Proposals & quotes with tracking','Send polished proposals that show when the client opened them, with e-sign and payment built in.','PandaDoc, Proposify, Qwilr'),
+      N('Audio & video processing','Compress call recordings, convert formats, trim clips and add subtitles.','FFmpeg (open source), Mux, Cloudinary, AWS Elemental MediaConvert, Shotstack (videos from templates)',['free'])
+    ]},
+    DAT: {name:'Outside data & scraping', q:'Bring in data from outside.',
+      plain:'Brings in information from outside the business: websites, search results, prices and contact data.',
+      build:'Buy data where you can. Scrape only public data, gently, and within each site’s terms.',
+      watch:'Scrapers break whenever a website changes. Budget for upkeep, or buy the data instead.',
+      rows:[
+      R('Web scraping platforms','Collect public data from websites on a schedule.','Apify, Bright Data, Zyte, ScrapingBee, ScraperAPI, Firecrawl, Browserless; open source: Playwright, Puppeteer, Scrapy',['free','risk'],'Check each site’s terms, and avoid personal data you have no right to collect.'),
+      R('Proxy networks','Rotate IP addresses so large scrapes are not blocked.','Bright Data, Oxylabs',['risk']),
+      R('CAPTCHA-solving services','Solve CAPTCHAs on sites you scrape, using AI or paid human workers.','2Captcha, Anti-Captcha, CapSolver',['risk'],'Usually breaks the target site’s terms and can create legal exposure. Prefer official APIs or licensed data.'),
+      R('Search results API','Search results as data: rankings, competitor pages, news.','SerpApi, Serper, Brave Search API, Tavily, Exa',[],'Microsoft retired the Bing Search APIs in Aug 2025. Google’s Custom Search JSON API is closed to new customers, and existing users have until 1 Jan 2027.'),
+      R('News monitoring','Alerts when a company, project or competitor appears in the news.','NewsAPI, GDELT (free)',['free']),
+      R('Contact & company enrichment','Add company size, industry, emails and phone numbers to leads.','Apollo.io, ZoomInfo, Lusha, Hunter.io, Snov.io',['risk'],'Personal data falls under India’s DPDP Act. Coverage of Indian SMEs varies.'),
+      R('Email address verification','Check an address exists before sending, to protect sender reputation.','ZeroBounce, NeverBounce, Kickbox'),
+      R('Phone number validation','Check a number’s format, type (mobile or landline) and carrier.','libphonenumber (open source), Twilio Lookup',['free']),
+      R('Commodity & metal prices','Steel, copper and aluminium prices to refresh price lists and costing.','BigMint (formerly SteelMint), MCX data through licensed vendors (check API access)',['in']),
+      R('Stock market & mutual fund data','Prices, NAVs and portfolios for finance clients.','Zerodha Kite Connect, Upstox API, Angel One SmartAPI, AMFI NAV file (free)',['in','free']),
+      R('Public holidays','Holiday-aware reminders, delivery dates and service targets.','Calendarific, Google Calendar holiday calendars',['free'])
+    ]},
+    BI: {name:'Reporting & data', q:'Turn the client’s data into answers.', nw:true,
+      plain:'Turns the app’s records into dashboards and answers: sales by region, overdue payments, best-selling products.',
+      build:'Start with a free dashboard tool on a reporting copy of the database. Add a warehouse only when data comes from many systems.',
+      watch:'Run heavy reports on a copy of the data, not the live database, so the app stays fast for users.',
+      rows:[
+      N('Dashboards & reports','Charts and tables that answer business questions: sales by region, overdue payments, stock ageing.','Looker Studio (free), Microsoft Power BI, Zoho Analytics, Metabase (open source), Apache Superset (open source)',['core','free']),
+      N('Data warehouse','A separate database built for heavy analysis across many systems.','Google BigQuery, Snowflake, Amazon Redshift, ClickHouse (open source)',['free'],'Most SMBs don’t need one at first. A reporting copy of the main database is enough.'),
+      N('Data pipelines (ETL)','Copy data from apps such as the CRM, Tally, ad accounts and sheets into one place on a schedule.','Airbyte (open source), Fivetran, Hevo Data',['free']),
+      N('Charts inside your product','Dashboards embedded in your own app, so clients see reports without another login.','Metabase (embedding), Cube; chart libraries such as Chart.js and ECharts (free)',['free']),
+      N('Ask your data in plain language','Staff type a question and AI turns it into a database query and a chart.','An LLM plus your database (text-to-SQL); Power BI Copilot; Metabase’s AI features',[],'Give the AI read-only access and show the query it ran, so the numbers can be checked.')
+    ]},
+    AI: {name:'AI', q:'Read, write, listen and speak.',
+      plain:'Gives the app skills that used to need a person: reading, writing, listening, speaking and recognising images.',
+      build:'Buy the models. Build the prompts, data and checks around them; that combination is what clients pay you for.',
+      watch:'AI makes mistakes. Keep a person in the loop for money, legal and customer-facing decisions.',
+      rows:[
+      R('Language models (LLMs)','Draft follow-ups, summarise calls, classify leads, extract data and answer questions.','Anthropic Claude, OpenAI, Google Gemini, Mistral; open models via AWS Bedrock, Google Vertex AI, Microsoft Azure, Groq, Together AI; Indian: Sarvam AI, Krutrim',['free']),
+      R('AI gateways','Switch between AI providers, cap spending and log usage in one place.','OpenRouter, Cloudflare AI Gateway, Portkey, LiteLLM (open source)',['free']),
+      R('Speech-to-text','Transcribe calls, voice notes and meetings.','Deepgram, AssemblyAI, Google Speech-to-Text, Azure Speech, OpenAI, ElevenLabs, Sarvam AI, Bhashini',[],'Test on Hindi, Assamese and mixed-language calls before committing.'),
+      R('Text-to-speech','Natural voices for IVR menus, reminders and read-aloud.','ElevenLabs, Google Cloud Text-to-Speech, Azure Speech, Amazon Polly, Sarvam AI'),
+      R('Translation & Indian languages','Translate and transliterate content, chats and documents.','Google Cloud Translation, Microsoft Translator, DeepL, Bhashini (Government of India), Sarvam AI, IndicTrans2 (AI4Bharat, open source)',['free']),
+      R('AI phone agents','A voice bot that makes or answers calls for lead qualification, reminders and bookings.','Bolna, Vapi, Retell AI, ElevenLabs Agents; connect through Exotel, Twilio and similar',[],'Tell callers they are speaking to an AI, and follow TRAI calling rules.'),
+      R('Chatbots on WhatsApp & web','Answer FAQs, qualify leads and book visits, then hand over to a person.','Build with an LLM plus the WhatsApp API; platforms: Yellow.ai, Haptik, Gupshup'),
+      R('Search by meaning & company knowledge','Search catalogues, manuals and past quotes by meaning, and let AI answer from them.','Embeddings: OpenAI, Voyage AI, Cohere. Vector databases: pgvector (open source), Pinecone, Qdrant, Weaviate, Milvus (open source), Elasticsearch or OpenSearch',['free']),
+      R('Image & video generation','Product visuals, ad creatives and short videos.','OpenAI, Google (Imagen, Veo), Runway, Black Forest Labs (FLUX), Ideogram, Higgsfield; model hosts: Replicate, fal',[],'Check each tool’s commercial-use terms before using output in ads.'),
+      R('Branded design automation','Fill brand templates with data: price cards, festival posts, certificates.','Canva Connect API (autofill), Bannerbear, Placid',[],'Canva autofill needs a Canva plan that includes it (Pro, Teams or Enterprise, per Canva’s docs).'),
+      R('Image recognition','Check site photos, read meters, count items, spot defects.','AI vision models, Google Cloud Vision, AWS Rekognition, Azure AI Vision, Roboflow (custom models)'),
+      R('Content moderation','Flag abusive text or images that users post.','OpenAI Moderation API, AWS Rekognition, Hive',['free']),
+      R('AI assistant connectors (MCP)','Let AI assistants such as Claude read and update your app by chat.','Model Context Protocol (open standard), Composio, LangChain (open source)',['free']),
+      R('Recommendations','“Customers who bought this also bought” and next-best-offer suggestions.','AWS Personalize, Google Vertex AI Search for commerce, Algolia Recommend')
+    ]},
+    AIE: {name:'AI engineering', q:'Build, test and run AI features reliably.', nw:true,
+      plain:'The workshop behind AI features: frameworks to build agents, logs to see what the AI did, and filters that keep it safe.',
+      build:'Mostly open-source or low-cost tools. Pick a small standard set and reuse it for every client.',
+      watch:'Log every AI call with its cost. Without logs you can’t explain a wrong answer or price your service.',
+      rows:[
+      N('Agent frameworks & SDKs','Code toolkits for AI agents that plan steps, use tools and hand work to each other.','LangGraph, Claude Agent SDK, OpenAI Agents SDK, CrewAI, Mastra (open source)',['free']),
+      N('No-code AI builders','Build chatbots and AI workflows visually, then connect them to WhatsApp, forms or the CRM.','n8n (AI nodes), Dify (open source), Flowise (open source), Relevance AI',['free']),
+      N('Document parsing for AI','Turns PDFs, scans, tables and spreadsheets into clean text that AI can search and quote.','LlamaParse, Unstructured, Docling (open source), Reducto',['free']),
+      N('Agent memory','Lets an AI assistant remember each customer’s details and past conversations.','Mem0, Zep, Letta (open source)',['free'],'Memory holds personal data. Give customers a way to have it deleted.'),
+      N('LLM observability & evaluation','Logs every AI call with its cost, speed and answer, and tests prompts before release.','Langfuse (open source), LangSmith, Helicone, Braintrust, Arize Phoenix (open source)',['free'],'Without it you can’t show a client why the AI answered as it did.'),
+      N('Guardrails & PII masking','Blocks unsafe answers, and hides phone numbers, PAN or Aadhaar before text is sent to an AI provider.','Microsoft Presidio (open source), NVIDIA NeMo Guardrails (open source), Llama Guard, Lakera, Amazon Comprehend (PII detection)',['free']),
+      N('Browser-using AI agents','AI that operates websites with no API: fills portal forms, downloads statements, checks order status.','Browserbase, Browser Use (open source), Claude computer use, Playwright MCP',['free','risk'],'Slower and less reliable than APIs. Keep a person checking anything that submits, pays or signs.'),
+      N('Model hosting & fine-tuning','Run open AI models privately, or train one on a client’s own examples.','Hugging Face Inference Endpoints, Together AI, Fireworks AI, Modal, Replicate; fine-tuning from OpenAI and others'),
+      N('GPU cloud','Rent GPUs to run your own models, including in Indian data centres.','E2E Networks (India), Yotta Shakti Cloud (India), RunPod, Lambda; AWS, Google Cloud and Azure',['in'],'Usually worth it only at scale, or when data must stay on infrastructure you control.')
+    ]},
+    APP: {name:'Business apps', q:'Talk to software the client already uses.',
+      plain:'Connects to software the client already runs, so data moves between systems without retyping.',
+      build:'Build the connector, or use an automation tool. Each client’s setup is a little different.',
+      watch:'Agree which system is the source of truth for each record (customer, invoice, stock), or you will create duplicates.',
+      rows:[
+      R('Tally','Push sales and purchase vouchers into Tally; pull ledgers and outstanding balances.','TallyPrime XML/JSON interface, ODBC',['in'],'TallyPrime must be running and reachable, usually through a small connector on the client’s PC or server.'),
+      R('Other accounting software','Sync invoices, payments and customers.','Zoho Books, Xero, Busy, Marg, QuickBooks (check integration options)',[],'Intuit discontinued QuickBooks in India in 2023, so it matters mainly for overseas clients.'),
+      R('ERP systems','Orders, stock and production data with larger clients’ ERPs.','SAP (Business One, S/4HANA), Oracle NetSuite, Microsoft Dynamics 365, Odoo (open source), ERPNext (open source)',['free']),
+      R('CRM systems','Sync leads and deals when the client keeps their existing CRM.','Zoho CRM, Salesforce, HubSpot, Freshsales, LeadSquared, Pipedrive'),
+      R('HR & payroll','Employees, leave, payroll and attendance.','Keka, greytHR, Darwinbox, Zoho People and Zoho Payroll, RazorpayX Payroll',['in']),
+      R('Google Workspace & Microsoft 365','Calendar events, email, contacts and files.','Google Calendar, Gmail and People APIs; Microsoft Graph',['core']),
+      R('Appointment booking','Customers book slots that sync to staff calendars.','Calendly, Cal.com (open source), Zoho Bookings',['free']),
+      R('Project & task tools','Tasks, timelines and approvals, for clients who already use one.','Asana, Jira, Trello, ClickUp, Monday.com, Zoho Projects, Notion, Linear'),
+      R('Team chat & alerts','Post alerts such as “big order” or “payment received” to a team channel.','Slack, Microsoft Teams, Google Chat, Telegram Bot API',['free']),
+      R('Helpdesk & ticketing','Complaints and service requests with response-time targets.','Freshdesk, Zoho Desk, Zendesk, Jira Service Management'),
+      R('Retail & restaurant POS','Sales, menus and Swiggy or Zomato orders.','Petpooja, UrbanPiper, Ginesys (check API access)',['in']),
+      N('Calendar & scheduling APIs','Create meetings, site visits and follow-ups in staff calendars, and check who is free.','Google Calendar API, Microsoft Graph (Outlook Calendar); one API for many calendars: Nylas, Cronofy')
+    ]},
+    GLU: {name:'Integration glue', q:'Connect everything to everything.',
+      plain:'The wiring between apps: when something happens in one, do something in another.',
+      build:'Use no-code tools for quick wins and prototypes. Move to custom code when volume or reliability demands it.',
+      watch:'Every automation is a small program. Name it, document it and set failure alerts, or it will break silently.',
+      rows:[
+      R('No-code automation','Connect apps with triggers and actions, without custom code.','Zapier, Make, n8n (open source), Pabbly Connect, Pipedream, Power Automate, Zoho Flow',['core','free']),
+      R('Unified APIs','One integration reaches many apps of one kind, such as every popular accounting app.','Merge, Apideck, Unified.to, Nango (open source), Paragon',['free'],'Check that Indian apps such as Tally, Zoho or Keka are covered.'),
+      R('Embedded integrations','A ready-made integrations menu inside your own product.','Paragon, Prismatic, Cyclr'),
+      R('Webhook infrastructure','Send and receive webhooks reliably, with retries and logs.','Svix, Hookdeck; ngrok for testing'),
+      R('Browser automation (RPA)','Operates websites that have no API by clicking through them like a person.','UiPath, Automation Anywhere, Power Automate Desktop, Playwright (open source)',['free','risk'],'Breaks when the site changes. Check the site’s terms first.'),
+      R('Enterprise integration platforms','Large, governed integrations for big clients with many systems.','MuleSoft, Boomi, Workato, Tray.ai (formerly Tray.io)')
+    ]},
+    INF: {name:'Infrastructure', q:'Keep the app fast, safe and running.',
+      plain:'The building the app lives in: servers, database, backups, monitoring and developer tools.',
+      build:'Buy managed services. SMB projects rarely need their own servers.',
+      watch:'Set up backups, error alerts and uptime checks before launch, not after the first outage.',
+      rows:[
+      R('Hosting','Where the app runs.','AWS, Google Cloud, Microsoft Azure, Vercel, Cloudflare, Netlify, DigitalOcean, Render, Railway, E2E Networks',['core'],'AWS, Google Cloud and Azure all have Indian regions if a client needs data kept in India.'),
+      R('Managed database & backend','Database, logins and storage without running your own servers. PostgreSQL and MySQL are the usual engines underneath.','Supabase (open source), Firebase, Neon, MongoDB Atlas, AWS RDS, PlanetScale, Cloudflare D1',['core','free']),
+      R('Real-time updates','Dashboards and chats that update live without refreshing.','Supabase Realtime, Firebase, Pusher, Ably, PubNub'),
+      R('Background jobs & schedules','Send reminders at 9 AM, retry failed syncs, run nightly reports.','Inngest, Trigger.dev (open source), Temporal (open source), AWS SQS, Upstash QStash',['free']),
+      R('In-app search','Fast, typo-tolerant search across products and customers.','Algolia, Typesense (open source), Meilisearch (open source), OpenSearch',['free']),
+      R('CDN & caching','Serve pages and files fast across India and beyond.','Cloudflare, AWS CloudFront, Bunny.net, Fastly',['free']),
+      R('Domains & DNS','Domain names and DNS records.','Cloudflare, AWS Route 53, GoDaddy'),
+      R('Error tracking','Instant alerts when the app crashes, with the exact error.','Sentry, Bugsnag, Rollbar',['core']),
+      R('Uptime, logs & monitoring','Alerts when the app is slow or down.','Better Stack, UptimeRobot, Grafana Cloud, Prometheus (open source), AWS CloudWatch, Datadog, New Relic',['core','free']),
+      R('Backups','Automatic copies of the database and files that can actually be restored.','Database provider backups, AWS Backup',['core']),
+      R('Feature flags & A/B tests','Turn features on for some users, or test two versions against each other.','PostHog, GrowthBook (open source), LaunchDarkly, Statsig, Optimizely',['free']),
+      R('Code hosting & deployment','Store code, run tests and deploy automatically.','GitHub, GitLab, Bitbucket',['core']),
+      R('Mobile app builds & store releases','Build Android and iOS apps and ship updates.','Expo EAS, Codemagic, Firebase App Distribution, Google Play Console API, App Store Connect API'),
+      R('Status page','A public page showing uptime and incidents.','Better Stack, Atlassian Statuspage, Instatus'),
+      N('API gateway','One front door for your APIs: checks keys, routes requests, applies rate limits and logs usage.','AWS API Gateway, Kong (open source), Apigee, Azure API Management, Cloudflare',['free'],'Needed once other systems, apps or paying customers call your APIs.'),
+      N('API design & testing tools','Describe, test and document APIs so developers and clients agree on how they work.','Postman, Insomnia, Bruno (open source), OpenAPI (Swagger) standard',['free']),
+      N('App translation management','Keep the app’s screens in several languages, and let translators work without touching code.','Crowdin, Lokalise, Tolgee (open source)',['free'])
+    ]},
+    IND: {name:'Industry add-ons', q:'Extras for specific client sectors.',
+      plain:'Connectors that only matter in certain industries, such as hospital records or hotel booking channels.',
+      build:'Buy, and budget time for certification in regulated sectors such as health and finance.',
+      watch:'Read the sector’s rules first. They decide which vendors you are allowed to use.',
+      rows:[
+      R('Healthcare (ABDM)','Patient ABHA IDs and consent-based sharing of health records.','Ayushman Bharat Digital Mission (ABDM) APIs, HL7 FHIR standard',['in','appr'],'Needs sandbox testing and certification before going live.'),
+      R('Education','Classes, assignments and certificates.','Google Classroom API, Moodle (open source), DigiLocker (certificates)',['free']),
+      R('Hotels & homestays','Rooms, rates and bookings synced with Booking.com, MakeMyTrip and others.','Channel managers: STAAH, eZee (Yanolja), SiteMinder'),
+      R('Restaurants','Swiggy and Zomato orders straight into the kitchen system.','UrbanPiper, Petpooja',['in']),
+      R('Real estate','Leads from property portals into the CRM.','99acres, MagicBricks, Housing.com (check lead API access)',['in']),
+      R('Agriculture','Mandi prices, weather and crop data.','data.gov.in (Agmarknet mandi prices), Open-Meteo, NASA POWER',['in','free']),
+      R('Rooftop solar (PM Surya Ghar)','Registration, vendor selection and subsidy steps of the national rooftop-solar scheme.','pmsuryaghar.gov.in (no public API known; manual entry or browser automation)',['in']),
+      R('Lending & finance','Loan onboarding: KYC, credit bureau, bank data, e-mandate and e-sign.','See the Verification & KYC and Payments groups',['in','lic']),
+      R('Electrical, EPC & solar trade','Tender alerts, metal prices, sunlight data and inverter monitoring.','See the Tax & government, Outside data, Maps and Devices groups',['in'])
+    ]},
+    SAAS: {name:'Running your own product', q:'Sell one product to many customers.', nw:true,
+      plain:'Everything needed to sell one product to many customers: plans and billing, onboarding, support, and the security proof large clients ask for.',
+      build:'Buy billing, login and compliance tools. Build the product itself.',
+      watch:'Decide on day one how each customer’s data is kept separate (multi-tenancy). Changing it later is expensive.',
+      rows:[
+      N('Subscription billing','Plans, trials, upgrades, invoices and automatic retries of failed payments.','Razorpay Subscriptions, Chargebee, Zoho Billing, Stripe Billing (invite-only in India)',['in']),
+      N('Usage-based billing','Charge per message, per document or per AI call, and show customers their usage.','Lago (open source), Orb, Metronome',['free']),
+      N('Client workspaces (multi-tenancy)','Each client company gets its own workspace, users and roles inside one shared app.','Clerk (Organizations), WorkOS, Auth0 (Organizations), Supabase row-level security',[],'Decide how client data is separated on day one. Changing it later is expensive.'),
+      N('Enterprise SSO & user provisioning (SCIM)','Large clients connect Okta or Microsoft Entra, so their staff get and lose access automatically.','WorkOS, Auth0, Okta'),
+      N('Security compliance (SOC 2, ISO 27001)','Collects the policies and evidence that large and overseas clients ask for before they sign.','Sprinto, Vanta, Drata'),
+      N('Product tours & onboarding','Guides new users with tooltips, checklists and short tours.','Userpilot, Appcues, Shepherd.js (open source)',['free']),
+      N('Feedback & public roadmap','Collect feature requests, let users vote, and show what is coming next.','Canny, Featurebase'),
+      N('Help centre & developer docs','Self-serve help articles, plus API documentation if others build on your product.','Intercom, Zoho Desk, GitBook, Mintlify'),
+      N('Affiliate & partner programmes','Pay agencies and partners a commission for customers they bring.','Rewardful, FirstPromoter, PartnerStack',[],'Check which payment processors each one supports before choosing.'),
+      N('App marketplaces','List your product where businesses already look for software.','Zoho Marketplace, Google Workspace Marketplace, Microsoft AppSource, Shopify App Store, Salesforce AppExchange',['appr'],'Each marketplace reviews apps before listing them.')
+    ]}
+  };
+
+  var LAYERS = [
+    {id:'people',    name:'People',                    note:'Who is using the app, and can you trust them?',         groups:['ID','KYC','SEC']},
+    {id:'customers', name:'Customers & conversations', note:'Reaching people and winning new customers.',            groups:['MSG','TEL','MKT']},
+    {id:'money',     name:'Money & compliance',        note:'Collecting, paying and staying legal.',                 groups:['PAY','GOV']},
+    {id:'physical',  name:'Physical world',            note:'Places, parcels and machines.',                         groups:['MAP','LOG','IOT']},
+    {id:'content',   name:'Content, data & AI',        note:'Files, outside data, reports and intelligence.',        groups:['DOC','DAT','BI','AI','AIE']},
+    {id:'plumbing',  name:'Plumbing',                  note:'Links to other software, and keeping the app running.', groups:['APP','GLU','INF']}
+  ];
+  var ALL_LAYERS = LAYERS.concat([
+    {id:'industry', name:'Industry add-ons', groups:['IND']},
+    {id:'product',  name:'Your own product', groups:['SAAS']}
+  ]);
+
+  var TOP15 = [
+    {n:'WhatsApp Business Platform', why:'Indian customers answer WhatsApp before email or calls. Quotes, reminders and payment links sent there get read.', cost:'Per template message (Meta) plus a provider fee'},
+    {n:'Payment gateway', why:'Payment links and UPI QR codes on every invoice speed up collection and match payments automatically.', cost:'A % of each transaction; varies by payment method'},
+    {n:'Language models (LLMs)', why:'The engine of an AI solutions business: drafting replies, summarising calls, pulling data out of messy inputs.', cost:'Pay per use (per token)'},
+    {n:'OCR & document reading', why:'SMBs run on paper, PDFs and WhatsApp photos. Reading RFQs, bills and visiting cards automatically removes daily retyping.', cost:'Per page or per AI call'},
+    {n:'Chatbots on WhatsApp & web', why:'Answers routine questions at any hour, qualifies leads and books visits, then hands over to staff.', cost:'AI usage plus message costs, or a platform fee'},
+    {n:'Instant lead sync from ads', why:'Every ad lead reaches the sales team within seconds, so no lead waits in an inbox overnight.', cost:'Free APIs; you pay only for the ads'},
+    {n:'Cloud telephony & IVR', why:'Every call is logged and recorded against the customer, even when staff leave or change phones.', cost:'Monthly plan plus per-minute charges'},
+    {n:'Speech-to-text', why:'Turns call recordings and voice notes into text that can be searched, summarised and scored.', cost:'Per audio minute'},
+    {n:'Tally', why:'Many Indian SMBs keep their books in Tally. Syncing it removes double entry between sales and accounts.', cost:'Client’s existing Tally licence; the connector is your build'},
+    {n:'E-invoicing (IRN and signed QR)', why:'Businesses above ₹5 crore turnover must e-invoice. Doing it from the app avoids re-keying on the portal.', cost:'GSP or tax API plan; the government portal itself is free'},
+    {n:'No-code automation', why:'Cheap, fast glue between the tools an SMB already uses. Good for proving a workflow before building it properly.', cost:'Per task per month; self-hosted n8n costs only the server'},
+    {n:'Google Workspace & Microsoft 365', why:'SMB owners live in Gmail, Calendar and Sheets. Meeting them there makes new software easier to adopt.', cost:'Free APIs within usage limits; the client pays for their own seats'},
+    {n:'Live tracking of field staff', why:'Shows where sales and service staff are and which customers they visited, and backs travel claims with distance.', cost:'Per user per month for ready apps, or your own build'},
+    {n:'Search by meaning & company knowledge', why:'Lets staff ask questions of price lists, manuals and past quotes, and lets a chatbot answer from the company’s own facts.', cost:'AI usage plus a vector database (pgvector is free)'},
+    {n:'Google Business Profile', why:'Local customers find SMBs on Google Maps. Managing posts, replies and reviews from one place keeps listings active.', cost:'Free API; access must be approved'}
+  ];
+  var FOUND = ['Login & user accounts','Managed database & backend','Hosting','File storage','Transactional email','Error tracking','Backups','CAPTCHA & bot detection'];
+
+  var STACKS = [
+    {title:'B2B sales CRM', who:'Trading or manufacturing firms with a sales team.',
+      start:['WhatsApp Business Platform','SIM call tracking on staff phones','B2B lead marketplaces','Instant lead sync from ads','Tally'],
+      next:['Click-to-call from the CRM','GSTIN lookup & auto-fill','Payment links','Live tracking of field staff','OCR & document reading']},
+    {title:'AI assistant for an SMB', who:'A WhatsApp or website assistant that answers from the company’s own information.',
+      start:['Chatbots on WhatsApp & web','Language models (LLMs)','Search by meaning & company knowledge','WhatsApp Business Platform','Document parsing for AI'],
+      next:['Speech-to-text','LLM observability & evaluation','Guardrails & PII masking','Agent memory','CRM systems']},
+    {title:'Agency workflow tool', who:'Marketing agencies managing many client accounts.',
+      start:['Sign in with Google, Microsoft or Apple','Google Workspace & Microsoft 365','Ad platform APIs','Website & app analytics','WhatsApp Business Platform'],
+      next:['E-signatures','Recurring payments & mandates','SEO data','Google Business Profile','Branded design automation']},
+    {title:'Field sales & service app', who:'Teams that visit dealers, sites or customers.',
+      start:['Live tracking of field staff','Geofencing & verified check-ins','Maps, address search & geocoding','Mobile push notifications','File storage'],
+      next:['Route planning for many stops','Distance & travel time','OCR & document reading','Speech-to-text','Expense management & company cards']},
+    {title:'Online store', who:'D2C brands and retailers selling online.',
+      start:['Payment gateway','Shipping aggregators','Transactional email','WhatsApp Business Platform','Website & app analytics'],
+      next:['Tracking pages & delivery alerts','Marketplace seller APIs','Loyalty & referrals','Reviews & reputation','Offline conversions']}
+  ];
+
+  /* ---------- helpers ---------- */
+  function $(s){ return document.querySelector(s); }
+  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function pad(n){ return (n < 10 ? '0' : '') + n; }
+  function tagHTML(t, withTitle){ return '<span class="tag" data-t="' + t + '"' + (withTitle ? ' title="' + esc(TAGS[t].desc) + '"' : '') + '>' + esc(TAGS[t].label) + '</span>'; }
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- build model ---------- */
+  var G = {}, GROUPS = [], ALL_ROWS = [], BY_NAME = {}, BY_CODE = {}, NEW_COUNT = 0;
+  ALL_LAYERS.forEach(function(L){
+    L.groups.forEach(function(id){
+      var g = DATA[id];
+      g.id = id; g.layer = L.id;
+      g.rows.forEach(function(r, i){
+        r.code = id + '-' + pad(i + 1);
+        r.g = g;
+        if (r.nw) NEW_COUNT++;
+        ALL_ROWS.push(r);
+        BY_NAME[r.n] = r;
+        BY_CODE[r.code] = r;
+      });
+      G[id] = g;
+      GROUPS.push(g);
+    });
+  });
+  var TOTAL = ALL_ROWS.length;
+  $('#stat-caps').textContent = TOTAL;
+  $('#stat-groups').textContent = GROUPS.length;
+  $('#stat-new').textContent = NEW_COUNT;
+
+  function findRow(name){
+    var r = BY_NAME[name];
+    if (!r) console.warn('Row not found: ' + name);
+    return r;
+  }
+  function jumpBtn(name){
+    var r = findRow(name); if (!r) return '';
+    return '<button type="button" class="jump" data-row="' + r.code + '"><span class="rc">' + r.code + '</span><span class="jn">' + esc(r.n) + '</span></button>';
+  }
+
+  /* ---------- top 15 + foundations ---------- */
+  $('#top').innerHTML = TOP15.map(function(item){
+    var r = findRow(item.n); if (!r) return '';
+    return '<li>' + jumpBtn(item.n) + '<p class="why">' + esc(item.why) + '</p><p class="cost">' + esc(item.cost) + '</p></li>';
+  }).join('');
+  $('#found').innerHTML = FOUND.map(function(name){
+    var r = findRow(name); if (!r) return '';
+    return '<button type="button" class="fchip" data-row="' + r.code + '"><span class="rc">' + r.code + '</span>' + esc(r.n) + '</button>';
+  }).join('');
+
+  /* ---------- map ---------- */
+  $('#map').innerHTML = LAYERS.map(function(L){
+    return '<div class="layer"><h3>' + esc(L.name) + '</h3><p>' + esc(L.note) + '</p>' +
+      L.groups.map(function(id){
+        var g = G[id];
+        return '<a class="glink" href="#' + id + '" data-group="' + id + '"><span class="code">' + id + '</span><span class="gname">' + esc(g.name) + '</span><span class="dots" aria-hidden="true"></span><span class="n">' + g.rows.length + '</span></a>';
+      }).join('') + '</div>';
+  }).join('');
+
+  /* ---------- stacks ---------- */
+  $('#stacks').innerHTML = STACKS.map(function(s){
+    return '<div class="stack"><h3>' + esc(s.title) + '</h3><p class="for">' + esc(s.who) + '</p>' +
+      '<div class="label">Start with</div>' + s.start.map(jumpBtn).join('') +
+      '<div class="label">Add next</div>' + s.next.map(jumpBtn).join('') + '</div>';
+  }).join('');
+
+  /* ---------- legend + chips ---------- */
+  $('#legend').innerHTML = CHIP_ORDER.map(function(t){
+    return '<div>' + tagHTML(t, false) + '<span>' + esc(TAGS[t].desc) + '</span></div>';
+  }).join('');
+  $('#chips').innerHTML = CHIP_ORDER.map(function(t){
+    return '<button type="button" class="chip" data-t="' + t + '" aria-pressed="false"><span class="dot" aria-hidden="true"></span>' + esc(TAGS[t].label) + '</button>';
+  }).join('');
+
+  /* ---------- catalogue ---------- */
+  function rowHTML(r){
+    var tags = TAG_ORDER.filter(function(t){ return r.t.indexOf(t) > -1; }).map(function(t){ return tagHTML(t, true); }).join('') +
+      (r.nw ? tagHTML('new', true) : '');
+    return '<article class="row" id="r-' + r.code + '">' +
+      '<div class="rcode">' + r.code + '</div>' +
+      '<div class="rmain"><h4 class="rname">' + esc(r.n) + '</h4>' +
+        (tags ? '<div class="rtags">' + tags + '</div>' : '') +
+        '<p class="rdesc">' + esc(r.d) + '</p>' +
+        (r.w ? '<p class="rnote"><b>Note</b>' + esc(r.w) + '</p>' : '') +
+      '</div>' +
+      '<div class="rvend"><span class="label">Examples</span>' + esc(r.v) + '</div>' +
+    '</article>';
+  }
+  function explainHTML(g){
+    return '<div class="explain">' +
+      '<p class="plain"><span class="k">In simple words</span>' + esc(g.plain) + '</p>' +
+      '<div class="two"><p><span class="k">Build or buy</span>' + esc(g.build) + '</p><p><span class="k">Architect’s watch-out</span>' + esc(g.watch) + '</p></div>' +
+    '</div>';
+  }
+  var html = '';
+  ALL_LAYERS.forEach(function(L){
+    html += '<p class="lhead" data-layer="' + L.id + '">' + esc(L.name) + '</p>';
+    L.groups.forEach(function(id){
+      var g = G[id];
+      html += '<section class="group" id="' + id + '">' +
+        '<h3 class="gh"><button type="button" class="ghead" aria-expanded="false" aria-controls="gb-' + id + '">' +
+          '<span class="code">' + id + '</span>' +
+          '<span><span class="gtitle">' + esc(g.name) + (g.nw ? tagHTML('new', false) : '') + '</span><span class="gq">' + esc(g.q) + '</span></span>' +
+          '<span class="gcount">' + g.rows.length + '</span>' +
+          '<span class="chev" aria-hidden="true"></span>' +
+        '</button></h3>' +
+        '<p class="gpreview">' + g.rows.map(function(r){ return esc(r.n); }).join(' · ') + '</p>' +
+        '<div class="gbody" id="gb-' + id + '" hidden>' + explainHTML(g) + g.rows.map(rowHTML).join('') + '</div>' +
+      '</section>';
+    });
+  });
+  $('#cat').innerHTML = html;
+
+  GROUPS.forEach(function(g){
+    g.el = document.getElementById(g.id);
+    g.btn = g.el.querySelector('.ghead');
+    g.body = g.el.querySelector('.gbody');
+    g.preview = g.el.querySelector('.gpreview');
+    g.countEl = g.el.querySelector('.gcount');
+    g.rows.forEach(function(r){
+      r.el = document.getElementById('r-' + r.code);
+      r.hay = [r.code, r.n, r.d, r.v, r.w, g.name, g.q, r.nw ? 'new' : ''].concat(r.t.map(function(t){ return TAGS[t].label; })).join(' ').toLowerCase();
+    });
+  });
+  var layerHeads = Array.prototype.slice.call(document.querySelectorAll('.lhead'));
+
+  /* ---------- state + filtering ---------- */
+  var state = {q:'', tags:[], open:{}};
+  var qEl = $('#q'), toggleBtn = $('#toggleAll');
+
+  function isActive(){ return state.q.trim() !== '' || state.tags.length > 0; }
+  function allOpen(){ return GROUPS.every(function(g){ return state.open[g.id]; }); }
+  function hasTag(r, t){ return t === 'new' ? r.nw : r.t.indexOf(t) > -1; }
+  function setOpen(g, open){
+    g.body.hidden = !open;
+    g.preview.hidden = open;
+    g.btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    g.el.classList.toggle('is-open', open);
+  }
+  function apply(){
+    var words = state.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    var active = isActive(), total = 0;
+    GROUPS.forEach(function(g){
+      var m = 0;
+      g.rows.forEach(function(r){
+        var ok = words.every(function(w){ return r.hay.indexOf(w) > -1; }) &&
+                 state.tags.every(function(t){ return hasTag(r, t); });
+        r.el.hidden = !ok;
+        if (ok) m++;
+      });
+      total += m;
+      g.el.hidden = active && m === 0;
+      g.countEl.textContent = active ? (m + ' of ' + g.rows.length) : String(g.rows.length);
+      setOpen(g, active ? m > 0 : !!state.open[g.id]);
+    });
+    layerHeads.forEach(function(h){
+      var L = h.getAttribute('data-layer');
+      h.hidden = !GROUPS.some(function(g){ return g.layer === L && !g.el.hidden; });
+    });
+    $('#result').textContent = active ? (total + ' of ' + TOTAL + ' capabilities match') : (TOTAL + ' capabilities in ' + GROUPS.length + ' groups');
+    $('#empty').hidden = !(active && total === 0);
+    $('#clearq').hidden = state.q === '';
+    toggleBtn.hidden = active;
+    toggleBtn.textContent = allOpen() ? 'Collapse all' : 'Expand all';
+  }
+  function clearFilters(){
+    qEl.value = ''; state.q = ''; state.tags = [];
+    Array.prototype.forEach.call(document.querySelectorAll('.chip'), function(c){ c.setAttribute('aria-pressed', 'false'); });
+  }
+
+  qEl.addEventListener('input', function(){ state.q = qEl.value; apply(); });
+  $('#clearq').addEventListener('click', function(){ qEl.value = ''; state.q = ''; apply(); qEl.focus(); });
+  $('#emptyClear').addEventListener('click', function(){ clearFilters(); apply(); qEl.focus(); });
+  $('#chips').addEventListener('click', function(e){
+    var c = e.target.closest('.chip'); if (!c) return;
+    var t = c.getAttribute('data-t'), i = state.tags.indexOf(t);
+    if (i > -1) state.tags.splice(i, 1); else state.tags.push(t);
+    c.setAttribute('aria-pressed', i > -1 ? 'false' : 'true');
+    apply();
+  });
+  toggleBtn.addEventListener('click', function(){
+    var open = !allOpen();
+    GROUPS.forEach(function(g){ state.open[g.id] = open; });
+    apply();
+  });
+  $('#cat').addEventListener('click', function(e){
+    var btn = e.target.closest('.ghead'); if (!btn) return;
+    var g = G[btn.closest('.group').id];
+    var willOpen = g.body.hidden;
+    if (!isActive()) state.open[g.id] = willOpen;
+    setOpen(g, willOpen);
+    toggleBtn.textContent = allOpen() ? 'Collapse all' : 'Expand all';
+  });
+
+  /* ---------- jumping ---------- */
+  function scrollToEl(el){ el.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'start'}); }
+  function goGroup(id){
+    var g = G[id]; if (!g) return;
+    if (isActive() && g.el.hidden) clearFilters();
+    state.open[id] = true;
+    apply();
+    scrollToEl(g.el);
+  }
+  function goRow(code){
+    var r = BY_CODE[code]; if (!r) return;
+    if (isActive() && r.el.hidden) clearFilters();
+    state.open[r.g.id] = true;
+    apply();
+    scrollToEl(r.el);
+    r.el.classList.remove('flash');
+    void r.el.offsetWidth;
+    r.el.classList.add('flash');
+    setTimeout(function(){ r.el.classList.remove('flash'); }, 2200);
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('[data-group]');
+    if (a) { e.preventDefault(); goGroup(a.getAttribute('data-group')); return; }
+    var j = e.target.closest('[data-row]');
+    if (j) { e.preventDefault(); goRow(j.getAttribute('data-row')); }
+  });
+
+  /* ---------- sticky toolbar height for scroll offsets ---------- */
+  var tb = $('#toolbar');
+  function setTb(){ document.documentElement.style.setProperty('--tb-h', tb.offsetHeight + 'px'); }
+  setTb();
+  window.addEventListener('resize', setTb);
+
+  apply();
+
+  /* ---------- deep links: #PAY or #r-PAY-02 ---------- */
+  var h = '';
+  try { h = decodeURIComponent((location.hash || '').slice(1)); } catch (err) { h = ''; }
+  if (h) {
+    if (G[h]) goGroup(h);
+    else if (h.indexOf('r-') === 0 && BY_CODE[h.slice(2)]) goRow(h.slice(2));
+  }
+})();
+</script>
+</body>
+</html>
